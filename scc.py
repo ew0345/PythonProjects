@@ -8,7 +8,7 @@ def returnToLauncher():
         # Exit scc.py
         root.quit()
     except Exception as e:
-        print(f"Failed to launcher launcher.py: {e}")
+        print(f"Failed to launch launcher.py: {e}")
 
 def calculate(userLevel, enemyLevel, isIceType, gameGen):
     # Converts userLevel and enemeyLevel to ints
