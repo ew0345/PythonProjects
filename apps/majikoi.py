@@ -15,24 +15,45 @@ def writeStates():
     # Majikoi TODO
     # Majikoi S TODO
     # Majikoi A-1
-    if (mA1BenkiVal.get() == 1):
-        mA1States[0] = 1
-    else:
+    if mA1BenkiVal.get() == 0:
         mA1States[0] = 0
-    if (mA1AzumiVal.get() == 1):
-        mA1States[1] = 1
     else:
+        mA1States[0] = 1
+
+    if mA1AzumiVal.get() == 0:
         mA1States[1] = 0
-    if (mA1SayakaVal.get() == 1):
-        mA1States[2] = 1
     else:
+        mA1States[1] = 1
+
+    if mA1SayakaVal.get() == 0:
         mA1States[2] = 0
+    else:
+        mA1States[2] = 1
 
     with open(mA1State, "w") as f:
         for item in mA1States:
             f.write("%s\n" % item)
 
-    # Majikoi A-2 TODO
+    # Majikoi A-2
+    if mA2MonshiroVal.get() == 0:
+        mA2States[0] = 0
+    else:
+        mA2States[0] = 1
+    
+    if mA2AiessVal.get() == 0:
+        mA2States[1] = 0
+    else:
+        mA2States[1] = 1
+    
+    if mA2SeisoVal.get() == 0:
+        mA2States[2] = 0
+    else:
+        mA2States[2] = 1
+    
+    with open(mA2State, "w") as f:
+        for item in mA2States:
+            f.write("%s\n" % item)
+
     # Majikoi A-3 TODO
     # Majikoi A-4 TODO
     # Majikoi A-5 TODO
@@ -63,46 +84,66 @@ def readStates():
     if not os.path.isfile(mState):
         with open(mState, "w") as f:
             f.write("0\n" * 19)
-            f.close()
     
     # Majikoi S
     if not os.path.isfile(mSState):
         with open(mSState, "w") as f:
             f.write("0\n" * 37)
-            f.close()
 
     # Majikoi A-1
     global mA1States
     if not os.path.isfile(mA1State):
         with open(mA1State, "w") as f:
             f.write("0\n" * 3)
-            f.close()
         with open(mA1State, "r") as f:
             mA1States = [line.strip() for line in f.readlines()]
     elif os.path.isfile(mA1State):
         with open(mA1State, "r") as f:
             mA1States = [line.strip() for line in f.readlines()]
-            f.close()
     
     # Majikoi A-2
+    global mA2States
     if not os.path.isfile(mA2State):
         with open(mA2State, "w") as f:
             f.write("0\n" * 3)
+        with open(mA2State, "r") as f:
+            mA2States = [line.strip() for line in f.readlines()]
+    elif os.path.isfile(mA2State):
+        with open(mA2State, "r") as f:
+            mA2States = [line.strip() for line in f.readlines()]
     
     # Majikoi A-3
+    global mA3States
     if not os.path.isfile(mA3State):
         with open(mA3State, "w") as f:
             f.write("0\n" * 3)
+        with open(mA3State, "r") as f:
+            mA3States = [line.strip() for line in f.readlines()]
+    elif os.path.isfile(mA3State):
+        with open(mA3State, "r") as f:
+            mA3States = [line.strip() for line in f.readlines()]
     
     # Majikoi A-4
+    global mA4States
     if not os.path.isfile(mA4State):
         with open(mA4State, "w") as f:
             f.write("0\n" * 3)
+        with open(mA4State, "r") as f:
+            mA4States = [line.strip() for line in f.readlines()]
+    elif os.path.isfile(mA4State):
+        with open(mA4State, "r") as f:
+            mA4States = [line.strip() for line in f.readlines()]
 
     # Majikoi A-5
+    global mA5States
     if not os.path.isfile(mA5State):
         with open(mA5State, "w") as f:
             f.write("0\n" * 3)
+        with open(mA5State, "r") as f:
+            mA5States = [line.strip() for line in f.readlines()]
+    elif os.path.isfile(mA5State):
+        with open(mA5State, "r") as f:
+            mA5States = [line.strip() for line in f.readlines()]
 
 def init():
     global root
@@ -148,7 +189,6 @@ def init():
 
     # Majikoi TODO
     # Majikoi S TODO
-    
     # Majikoi A-1
     # Variables
     global mA1BenkiVal; mA1BenkiVal = tk.IntVar()
@@ -158,8 +198,10 @@ def init():
     # Labels
     labelBenki = tk.Label(tabA1, text="Benki", font=("Tahoma", 13))
     labelBenki.place(x=10, y=10)
+
     labelAzumi = tk.Label(tabA1, text="Azumi", font=("Tahoma", 13))
     labelAzumi.place(x=147, y=10)
+
     labelSayaka = tk.Label(tabA1, text="Sayaka", font=("Tahoma", 13))
     labelSayaka.place(x=270, y=10)
 
@@ -174,6 +216,31 @@ def init():
     mA1Sayaka.place(x=269, y=34)
 
     # Majikoi A-2 TODO
+    # Variables
+    global mA2MonshiroVal; mA2MonshiroVal = tk.IntVar()
+    global mA2AiessVal; mA2AiessVal = tk.IntVar()
+    global mA2SeisoVal; mA2SeisoVal = tk.IntVar()
+
+    # Labels
+    labelMonshiro = tk.Label(tabA2, text="Monshiro", font=("Tahoma", 13))
+    labelMonshiro.place(x=10, y=10)
+    
+    labelAiess = tk.Label(tabA2, text="Aiess", font=("Tahoma", 13))
+    labelAiess.place(x=147, y=10)
+    
+    labelSeiso = tk.Label(tabA2, text="Seiso", font=("Tahoma", 13))
+    labelSeiso.place(x=270, y=10)
+
+    # Checkbuttons
+    mA2Monshiro = tk.Checkbutton(tabA2, text="Completed", font=("Tahoma", 11), variable=mA2MonshiroVal)
+    mA2Monshiro.place(x=8, y=34)
+
+    mA2Aiess = tk.Checkbutton(tabA2, text="Completed", font=("Tahoma", 11), variable=mA2AiessVal)
+    mA2Aiess.place(x=147, y=34)
+
+    mA2Seiso = tk.Checkbutton(tabA2, text="Completed", font=("Tahoma", 11), variable=mA2SeisoVal)
+    mA2Seiso.place(x=269, y=34)
+
     # Majikoi A-3 TODO
     # Majikoi A-4 TODO
     # Majikoi A-5 TODO
@@ -221,7 +288,22 @@ def init():
     else:
         mA1SayakaVal.set(1)
 
-    # Majikoi A-2 TODO
+    # Majikoi A-2
+    if int(mA2States[0]) == 0:
+        mA2MonshiroVal.set(0)
+    else:
+        mA2MonshiroVal.set(1)
+
+    if int(mA2States[1]) == 0:
+        mA2AiessVal.set(0)
+    else:
+        mA2AiessVal.set(1)
+    
+    if int(mA2States[2]) == 0:
+        mA2SeisoVal.set(0)
+    else:
+        mA2SeisoVal.set(1)
+    
     # Majikoi A-3 TODO
     # Majikoi A-4 TODO
     # Majikoi A-5 TODO
