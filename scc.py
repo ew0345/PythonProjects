@@ -1,4 +1,14 @@
 import tkinter as tk
+import subprocess
+
+def returnToLauncher():
+    try:
+        # Open launcher.py
+        subprocess.Popen(["py", "launcher.py"])
+        # Exit scc.py
+        root.quit()
+    except Exception as e:
+        print(f"Failed to launcher launcher.py: {e}")
 
 def calculate(userLevel, enemyLevel, isIceType, gameGen):
     # Converts userLevel and enemeyLevel to ints
@@ -18,9 +28,10 @@ def calculate(userLevel, enemyLevel, isIceType, gameGen):
     labelChance.config(text=f"Chance to hit: {acc}%")
 
 def init():
+    global root
     root = tk.Tk()
     # Set Window Size
-    root.geometry("250x215")
+    root.geometry("253x215")
     # Set Window Title
     root.title("SCC")
     # Set Application Icon
@@ -28,6 +39,15 @@ def init():
 
     # Images
     image = tk.PhotoImage(file="./images/Icon3.png")
+
+    # Menubar
+    menu = tk.Menu(root)
+
+    menuFile = tk.Menu(menu, tearoff=0)
+    menuFile.add_command(label="Return to Launcher", command=returnToLauncher)
+
+    menu.add_cascade(label="File", menu=menuFile)
+    root.config(menu=menu)
 
     # Labels
     labelUserLevel = tk.Label(root, text="User Level")
