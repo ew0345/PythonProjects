@@ -1,3 +1,4 @@
+from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import ttk
 import subprocess
@@ -73,7 +74,27 @@ def init():
         # TODO
     
     # About
-        # TODO
+    try: 
+        image = tk.PhotoImage(file="images/Icon3.png")
+    except tk.TclError:
+        image = tk.PhotoImage()
+
+    
+    labelImage = tk.Label(tabAbout, image=image)
+    labelImage.place(x=249, y=13)
+
+    labelMadeBy = tk.Label(tabAbout, text="Made By Ew0345", font=("Tahoma", 14))
+    labelMadeBy.place(x=310, y=30)
+
+    labelGithub = tk.Label(tabAbout, text="Github: https://www.github.com/ew0345", font=("Tahoma", 14))
+    labelGithub.place(x=180, y=77)
+
+    labelAboutInfo = tk.Label(tabAbout, text="This program creates a folder and several files in your user home folder\nThe files are all contained within the folder \"MajikoiRoutes\", these can be safely deleted\nHowever deleting these files will reset the state of any checked boxes in the routes tabs.", font=("Tahoma", 14))
+    labelAboutInfo.place(x=24, y=269)
+
+    buttonDeleteFiles = tk.Button(tabAbout, text="Delete Files", font=("Tahoma", 30), width=34)
+    buttonDeleteFiles.place(x=22, y=392)
+        
 
     root.mainloop()
 
