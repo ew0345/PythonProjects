@@ -1,4 +1,4 @@
-from PIL import Image, ImageTk
+import os
 import tkinter as tk
 from tkinter import ttk
 import subprocess
@@ -9,6 +9,30 @@ def returnToLauncher():
         root.quit()
     except Exception as e:
         print(f"Failed to launch launcher.py: {e}")
+
+def writeStates():
+    # TODO
+    # Majikoi A-1
+    if (mA1BenkiVal.get() == 1):
+        mA1States[0] = 1
+    else:
+        mA1States[0] = 0
+    if (mA1AzumiVal.get() == 1):
+        mA1States[1] = 1
+    else:
+        mA1States[1] = 0
+    if (mA1SayakaVal.get() == 1):
+        mA1States[2] = 1
+    else:
+        mA1States[2] = 0
+
+    print(mA1States)
+
+    with open(mA1State, "w") as f:
+        for item in mA1States:
+            f.write("%s\n" % item)
+
+    root.quit()
 
 def init():
     global root
@@ -59,7 +83,28 @@ def init():
         # TODO
     
     # Majikoi A-1
-        # TODO
+        # Variables
+    global mA1BenkiVal; mA1BenkiVal = tk.IntVar()
+    global mA1AzumiVal; mA1AzumiVal = tk.IntVar()
+    global mA1SayakaVal; mA1SayakaVal = tk.IntVar()
+
+        # Labels
+    labelBenki = tk.Label(tabA1, text="Benki", font=("Tahoma", 13))
+    labelBenki.place(x=10, y=10)
+    labelAzumi = tk.Label(tabA1, text="Azumi", font=("Tahoma", 13))
+    labelAzumi.place(x=147, y=10)
+    labelSayaka = tk.Label(tabA1, text="Sayaka", font=("Tahoma", 13))
+    labelSayaka.place(x=270, y=10)
+
+        # Checkbuttons
+    mA1Benki = tk.Checkbutton(tabA1, text="Completed", font=("Tahoma", 11), variable=mA1BenkiVal)
+    mA1Benki.place(x=8, y=34)
+
+    mA1Azumi = tk.Checkbutton(tabA1, text="Completed", font=("Tahoma", 11), variable=mA1AzumiVal)
+    mA1Azumi.place(x=147, y=34)
+ 
+    mA1Sayaka = tk.Checkbutton(tabA1, text="Completed", font=("Tahoma", 11), variable=mA1SayakaVal)
+    mA1Sayaka.place(x=269, y=34)
 
     # Majikoi A-2
         # TODO
@@ -92,10 +137,95 @@ def init():
     labelAboutInfo = tk.Label(tabAbout, text="This program creates a folder and several files in your user home folder\nThe files are all contained within the folder \"MajikoiRoutes\", these can be safely deleted\nHowever deleting these files will reset the state of any checked boxes in the routes tabs.", font=("Tahoma", 14))
     labelAboutInfo.place(x=24, y=269)
 
-    buttonDeleteFiles = tk.Button(tabAbout, text="Delete Files", font=("Tahoma", 30), width=34)
+    buttonDeleteFiles = tk.Button(tabAbout, text="Delete Files", font=("Tahoma", 30), width=34, height=2)
     buttonDeleteFiles.place(x=22, y=392)
-        
 
+    # Persistence
+        # TODO
+    # Majikoi Routes Directory
+    dirHome = os.path.expanduser("~")
+    dirMaji = "MajikoiRoutesPy"
+    global dirPath; dirPath = os.path.join(dirHome, dirMaji)
+    if not os.path.exists(dirPath):
+        os.makedirs(dirPath)
+
+    # Majikoi States Files
+    global mState; mState = dirPath+"/mState.txt"
+    global mSState; mSState = dirPath+"/mSState.txt"
+    global mA1State; mA1State = dirPath+"/mA1State.txt"
+    global mA2State; mA2State = dirPath+"/mA2State.txt"
+    global mA3State; mA3State = dirPath+"/mA3State.txt"
+    global mA4State; mA4State = dirPath+"/mA4State.txt"
+    global mA5State; mA5State = dirPath+"/mA5State.txt"
+
+    # Handle State files
+
+    # Majikoi
+    if not os.path.isfile(mState):
+        with open(mState, "w") as f:
+            f.write("0\n" * 19)
+            f.close()
+    
+    # Majikoi S
+    if not os.path.isfile(mSState):
+        with open(mSState, "w") as f:
+            f.write("0\n" * 37)
+            f.close()
+
+    # Majikoi A-1
+    global mA1States
+    if not os.path.isfile(mA1State):
+        with open(mA1State, "w") as f:
+            f.write("0\n" * 3)
+            f.close()
+        with open(mA1State, "r") as f:
+            mA1States = [line.strip() for line in f.readlines()]
+    elif os.path.isfile(mA1State):
+        with open(mA1State, "r") as f:
+            mA1States = [line.strip() for line in f.readlines()]
+            f.close()
+
+    print(mA1States)
+    print(f"{mA1BenkiVal.get()}, {mA1AzumiVal.get()}, {mA1SayakaVal.get()}")
+    
+    if int(mA1States[0]) == 0:
+        mA1BenkiVal.set(0)
+    else:
+        mA1BenkiVal.set(1)
+
+    if int(mA1States[1]) == 0:
+        mA1AzumiVal.set(0)
+    else:
+        mA1AzumiVal.set(1)
+
+    if int(mA1States[2]) == 0:
+        mA1SayakaVal.set(0)
+    else:
+        mA1SayakaVal.set(1)
+
+    print(f"{mA1BenkiVal.get()}, {mA1AzumiVal.get()}, {mA1SayakaVal.get()}")
+    
+    # Majikoi A-2
+    if not os.path.isfile(mA2State):
+        with open(mA2State, "w") as f:
+            f.write("0\n" * 3)
+    
+    # Majikoi A-3
+    if not os.path.isfile(mA3State):
+        with open(mA3State, "w") as f:
+            f.write("0\n" * 3)
+    
+    # Majikoi A-4
+    if not os.path.isfile(mA4State):
+        with open(mA4State, "w") as f:
+            f.write("0\n" * 3)
+
+    # Majikoi A-5
+    if not os.path.isfile(mA5State):
+        with open(mA5State, "w") as f:
+            f.write("0\n" * 3)
+    
+    root.protocol("WM_DELETE_WINDOW", writeStates)
     root.mainloop()
 
 init()
