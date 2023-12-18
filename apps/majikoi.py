@@ -54,7 +54,26 @@ def writeStates():
         for item in mA2States:
             f.write("%s\n" % item)
 
-    # Majikoi A-3 TODO
+    # Majikoi A-3
+    if mA3LeeVal.get() == 0:
+        mA3States[0] = 0
+    else:
+        mA3States[0] = 1
+    
+    if mA3StacyVal.get() == 0:
+        mA3States[1] = 0
+    else:
+        mA3States[1] = 1
+    
+    if mA3TsubameVal.get() == 0:
+        mA3States[2] = 0
+    else:
+        mA3States[2] = 1
+
+    with open(mA3State, "w") as f:
+        for item in mA3States:
+            f.write("%s\n" % item)
+    
     # Majikoi A-4 TODO
     # Majikoi A-5 TODO
 
@@ -100,6 +119,21 @@ def readStates():
     elif os.path.isfile(mA1State):
         with open(mA1State, "r") as f:
             mA1States = [line.strip() for line in f.readlines()]
+
+    if int(mA1States[0]) == 0:
+        mA1BenkiVal.set(0)
+    else:
+        mA1BenkiVal.set(1)
+
+    if int(mA1States[1]) == 0:
+        mA1AzumiVal.set(0)
+    else:
+        mA1AzumiVal.set(1)
+
+    if int(mA1States[2]) == 0:
+        mA1SayakaVal.set(0)
+    else:
+        mA1SayakaVal.set(1)
     
     # Majikoi A-2
     global mA2States
@@ -111,6 +145,21 @@ def readStates():
     elif os.path.isfile(mA2State):
         with open(mA2State, "r") as f:
             mA2States = [line.strip() for line in f.readlines()]
+
+    if int(mA2States[0]) == 0:
+        mA2MonshiroVal.set(0)
+    else:
+        mA2MonshiroVal.set(1)
+
+    if int(mA2States[1]) == 0:
+        mA2AiessVal.set(0)
+    else:
+        mA2AiessVal.set(1)
+    
+    if int(mA2States[2]) == 0:
+        mA2SeisoVal.set(0)
+    else:
+        mA2SeisoVal.set(1)
     
     # Majikoi A-3
     global mA3States
@@ -122,6 +171,21 @@ def readStates():
     elif os.path.isfile(mA3State):
         with open(mA3State, "r") as f:
             mA3States = [line.strip() for line in f.readlines()]
+    
+    if int(mA3States[0]) == 0:
+        mA3LeeVal.set(0)
+    else:
+        mA3LeeVal.set(1)
+    
+    if int(mA3States[1]) == 0:
+        mA3StacyVal.set(0)
+    else:
+        mA3StacyVal.set(1)
+    
+    if int(mA3States[2]) == 0:
+        mA3TsubameVal.set(0)
+    else:
+        mA3TsubameVal.set(1)
     
     # Majikoi A-4
     global mA4States
@@ -188,7 +252,13 @@ def init():
     notebook.pack(expand=True, fill="both")
 
     # Majikoi TODO
+    # Variables
+    # Labels
+    # Checkbuttons
     # Majikoi S TODO
+    # Variables
+    # Labels
+    # Checkbuttons
     # Majikoi A-1
     # Variables
     global mA1BenkiVal; mA1BenkiVal = tk.IntVar()
@@ -242,8 +312,41 @@ def init():
     mA2Seiso.place(x=269, y=34)
 
     # Majikoi A-3 TODO
+    # Variables
+    global mA3LeeVal; mA3LeeVal = tk.IntVar()
+    global mA3StacyVal; mA3StacyVal = tk.IntVar()
+    global mA3TsubameVal; mA3TsubameVal = tk.IntVar()
+    # Labels
+    labelLee = tk.Label(tabA3, text="Lee", font=("Tahoma", 13))
+    labelLee.place(x=10, y=10)
+
+    labelStacy = tk.Label(tabA3, text="Stacy", font=("Tahoma", 13))
+    labelStacy.place(x=147, y=10)
+
+    labelTsubame = tk.Label(tabA3, text="Tsubame", font=("Tahoma", 13))
+    labelTsubame.place(x=270, y=10)
+    # Checkbuttons
+    mA3Lee = tk.Checkbutton(tabA3, text="Completed", font=("Tahoma", 11), variable=mA3LeeVal)
+    mA3Lee.place(x=8, y=34)
+    
+    mA3Stacy = tk.Checkbutton(tabA3, text="Completed", font=("Tahoma", 11), variable=mA3StacyVal)
+    mA3Stacy.place(x=147, y=34)
+
+    mA3Tsubame = tk.Checkbutton(tabA3, text="Completed", font=("Tahoma", 11), variable=mA3TsubameVal)
+    mA3Tsubame.place(x=269, y=34)
     # Majikoi A-4 TODO
+    # Variables
+    global mA4LinVal; mA4LinVal = tk.IntVar()
+    global mA4HomuraVal; mA4HomuraVal = tk.IntVar()
+    # Labels
+    # Checkbuttons
     # Majikoi A-5 TODO
+    # Variables
+    global mA5YoshitsuneVal; mA5YoshitsuneVal = tk.IntVar()
+    global mA5TakaeVal; mA5TakaeVal = tk.IntVar()
+    global mA5MargitVal; mA5MargitVal = tk.IntVar()
+    # Labels
+    # Checkbuttons
     
     # About
     try: 
@@ -269,44 +372,6 @@ def init():
 
     # Persistence
     readStates()
-    # Majikoi TODO
-    # Majikoi S TODO
-
-    # Majikoi A-1
-    if int(mA1States[0]) == 0:
-        mA1BenkiVal.set(0)
-    else:
-        mA1BenkiVal.set(1)
-
-    if int(mA1States[1]) == 0:
-        mA1AzumiVal.set(0)
-    else:
-        mA1AzumiVal.set(1)
-
-    if int(mA1States[2]) == 0:
-        mA1SayakaVal.set(0)
-    else:
-        mA1SayakaVal.set(1)
-
-    # Majikoi A-2
-    if int(mA2States[0]) == 0:
-        mA2MonshiroVal.set(0)
-    else:
-        mA2MonshiroVal.set(1)
-
-    if int(mA2States[1]) == 0:
-        mA2AiessVal.set(0)
-    else:
-        mA2AiessVal.set(1)
-    
-    if int(mA2States[2]) == 0:
-        mA2SeisoVal.set(0)
-    else:
-        mA2SeisoVal.set(1)
-    
-    # Majikoi A-3 TODO
-    # Majikoi A-4 TODO
-    # Majikoi A-5 TODO
 
     root.protocol("WM_DELETE_WINDOW", writeStates)
     root.mainloop()
