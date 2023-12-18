@@ -35,10 +35,16 @@ def init():
     # Set Window Title
     root.title("SCC")
     # Set Application Icon
-    root.iconbitmap("./images/Icon3.ico")
+    try:
+        root.iconbitmap("./images/Icon3.ico")
+    except Exception:
+        root.iconbitmap()
 
     # Images
-    image = tk.PhotoImage(file="./images/Icon3.png")
+    try:
+        image = tk.PhotoImage(file="./images/Icon3.png")
+    except tk.TclError:
+        image = tk.PhotoImage()
 
     # Menubar
     menu = tk.Menu(root)

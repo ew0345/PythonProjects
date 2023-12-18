@@ -17,11 +17,17 @@ def init():
     root.geometry("253x215")
     # Set Window Title
     root.title("Launcher")
-    # Application Icon
-    root.iconbitmap("./images/Icon3.ico")
+    # Set Application Icon
+    try:
+        root.iconbitmap("./images/Icon3.ico")
+    except Exception:
+        root.iconbitmap()
 
     # Images
-    image = tk.PhotoImage(file="./images/Icon3.png")
+    try:
+        image = tk.PhotoImage(file="./images/Icon3.png")
+    except tk.TclError:
+        image = tk.PhotoImage()
 
     # Menubar
     menu = tk.Menu(root)
