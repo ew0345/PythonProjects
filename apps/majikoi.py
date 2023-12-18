@@ -55,6 +55,14 @@ def writeStates():
             f.write("%s\n" % item)
 
     # Majikoi A-5 TODO
+    mA5Vars = [mA5YoshitsuneVal, mA5TakaeVal, mA5MargitVal]
+
+    for i, var in enumerate(mA5Vars):
+        mA5States[i] = 0 if var.get() == 0 else 1
+
+    with open(mA5State, "w") as f:
+        for item in mA5States:
+            f.write("%s\n" % item)
 
     root.quit()
 
@@ -320,9 +328,26 @@ def init():
     global mA5YoshitsuneVal; mA5YoshitsuneVal = tk.IntVar()
     global mA5TakaeVal; mA5TakaeVal = tk.IntVar()
     global mA5MargitVal; mA5MargitVal = tk.IntVar()
-    
+
     # Labels
+    labelYoshitsune = tk.Label(tabA5, text="Yoshitsune", font=("Tahoma", 13))
+    labelYoshitsune.place(x=10, y=10)
+
+    labelTakae = tk.Label(tabA5, text="Takae", font=("Tahoma", 13))
+    labelTakae.place(x=147, y=10)
+
+    labelMargit = tk.Label(tabA5, text="Margit After", font=("Tahoma", 13))
+    labelMargit.place(x=270, y=10)
+
     # Checkbuttons
+    mA5Yoshitsune = tk.Checkbutton(tabA5, text="Completed", font=("Tahoma", 11), variable=mA5YoshitsuneVal)
+    mA5Yoshitsune.place(x=8, y=34)
+
+    mA5Takae = tk.Checkbutton(tabA5, text="Completed", font=("Tahoma", 11), variable=mA5TakaeVal)
+    mA5Takae.place(x=147, y=34)
+
+    mA5Margit = tk.Checkbutton(tabA5, text="Completed", font=("Tahoma", 11), variable=mA5MargitVal)
+    mA5Margit.place(x=269, y=34)
     
     # About
     try: 
