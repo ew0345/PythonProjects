@@ -24,10 +24,10 @@ def init():
     # Set Window Title
     root.title("SCC")
     # Set Application Icon
-    root.iconbitmap("./Icon3.ico")
+    root.iconbitmap("./images/Icon3.ico")
 
     # Images
-    image = tk.PhotoImage(file="./Icon3.png")
+    image = tk.PhotoImage(file="./images/Icon3.png")
 
     # Labels
     labelUserLevel = tk.Label(root, text="User Level")
