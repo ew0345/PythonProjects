@@ -70,7 +70,6 @@ def init():
     isIceType.place(x=85, y=140)
 
     # Buttons
-    #lambda: calculate(userLevel, enemyLevel, isIceType, gameGen)
     buttonCalculate = tk.Button(root, text="Calculate", command=lambda: calculate(userLevel.get(), enemyLevel.get(), isIceTypeVar.get(), gameGenVar.get()))
     buttonCalculate.place(x=34, y=85)    
 
