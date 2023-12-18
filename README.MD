@@ -4,11 +4,11 @@ This project includes the following files:
 
 - `launcher.py`: This is the main application launcher.
 - `scc.py`: This file contains the SCC application.
-- `archcalc.py`: This file is currently empty and will be worked on later.
+- `archcalc.py`: This file is contains the Tome Calculator application.
 
 ## Usage
 
-To use this project, run the `launcher.py` file. This will open the main application launcher. From there, you can access the SCC application and the ArchCalc application (once it's complete)
+To use this project, run the `launcher.py` file. This will open the main application launcher. From there, you can access the SCC application and the Tome Calculator application.
 
 ## Contributions
 
