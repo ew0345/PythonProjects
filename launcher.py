@@ -3,9 +3,9 @@ import subprocess
 
 def open(app):
     # What application to open when a button is clicked
-    apps = {0: "scc.py", 1: "archcalc.py"}
+    apps = {0: "scc.py", 1: "archcalc.py", 2: "majikoi.py"}
     try:
-        subprocess.Popen(["py", apps[app]])
+        subprocess.Popen(["py", "apps/"+apps[app]])
         root.quit()
     except KeyError:
         print(f"{app} is an invalid application id.")
@@ -51,6 +51,9 @@ def init():
 
     buttonArch = tk.Button(root, text="Arch Tome Calculator", width=18, command=lambda: open(1))
     buttonArch.place(x=10, y=60)
+
+    buttonMaji = tk.Button(root, text="Majikoi Route Tracker", width=18, command=lambda: open(2))
+    buttonMaji.place(x=10, y=90)
 
     root.mainloop()
 
