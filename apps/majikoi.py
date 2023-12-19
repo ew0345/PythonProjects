@@ -24,7 +24,6 @@ def writeStates(ret):
     if deleted == True:
         root.quit()
     else:
-        # TODO
         # Majikoi
         mVars = [mMomoyo, mChris, mMiyako, mYukie, mKazuko, mKojima, mChika, mMoro, mCapt, mHermitCrabs, mNoRelationship, mMayo, mTutorialRoom, mAgave, mMomoyoAfter, mMiyakoAfter, mYukieAfter, mKazukoAfter]
 
@@ -34,7 +33,17 @@ def writeStates(ret):
         with open(m1State, "w") as f:
             for item in m1States:
                 f.write("%s\n" % item)
-        # Majikoi S TODO
+
+        # Majikoi S
+        mSVars = [mSCommon, mSMonshiro, mSMonshiroCont, mSMargit, mSMargitCont, mSTsubame, mSTsubameCont, mSTsubameF1, mSTsubameF2, mSIyo, mSShima, mSMaids, mSKazamaFam, mSTatsuko, mSYumiko, mSDevotedCrabs, mSMiyakoAF1, mSMiyakoAF2, mSMiyakoAF3, mSChousokabe, mSKokoro, mSNoRelationship, mSKosugi, mSKosugiCont, mSChildhood, mSKoyuki, mSKoyukiF, mSTakae, mSMonshiroAfter, mSKazukoS, mSMomoyoS, mSMiyakoS, mSYukieS, mSChrisS, mSTsubameAF1, mSTsubameAF2, mSHermitCrabsS, mSAgaveAfter]
+
+        for i, var in enumerate(mSVars):
+            mSStates[i] = 0 if var.get() == 0 else 1
+        
+        with open(mSState, "w") as f:
+            for item in mSStates:
+                f.write("%s\n" % item)
+        
         # Majikoi A-1
         mA1Vars = [mA1BenkiVal, mA1AzumiVal, mA1SayakaVal]
         
@@ -130,7 +139,17 @@ def readStates():
     global mSStates
     if not os.path.isfile(mSState):
         with open(mSState, "w") as f:
-            f.write("0\n" * 37)
+            f.write("0\n" * 38)
+        with open(mSState, "r") as f:
+            mSStates = [line.strip() for line in f.readlines()]
+    elif os.path.isfile(mSState):
+        with open(mSState, "r") as f:
+            mSStates = [line.strip() for line in f.readlines()]
+    
+    mSVars = [mSCommon, mSMonshiro, mSMonshiroCont, mSMargit, mSMargitCont, mSTsubame, mSTsubameCont, mSTsubameF1, mSTsubameF2, mSIyo, mSShima, mSMaids, mSKazamaFam, mSTatsuko, mSYumiko, mSDevotedCrabs, mSMiyakoAF1, mSMiyakoAF2, mSMiyakoAF3, mSChousokabe, mSKokoro, mSNoRelationship, mSKosugi, mSKosugiCont, mSChildhood, mSKoyuki, mSKoyukiF, mSTakae, mSMonshiroAfter, mSKazukoS, mSMomoyoS, mSMiyakoS, mSYukieS, mSChrisS, mSTsubameAF1, mSTsubameAF2, mSHermitCrabsS, mSAgaveAfter]
+
+    for i, var in enumerate(mSVars):
+        var.set(0 if int(mSStates[i]) == 0 else 1)
 
     # Majikoi A-1
     global mA1States
@@ -291,67 +310,229 @@ def init():
     labelAfterRoutes.place(x=491, y=11)
 
     # Checkbuttons
-    labelMomoyo = tk.Checkbutton(tabMaji, text="Momoyo", font=("Tahoma", 13), variable=mMomoyo)
-    labelMomoyo.place(x=10, y=49)
+    Momoyo = tk.Checkbutton(tabMaji, text="Momoyo", font=("Tahoma", 13), variable=mMomoyo)
+    Momoyo.place(x=10, y=49)
 
-    labelChris = tk.Checkbutton(tabMaji, text="Chris", font=("Tahoma", 13), variable=mChris)
-    labelChris.place(x=10, y=75)
+    Chris = tk.Checkbutton(tabMaji, text="Chris", font=("Tahoma", 13), variable=mChris)
+    Chris.place(x=10, y=75)
 
-    labelMiyako = tk.Checkbutton(tabMaji, text="Miyako", font=("Tahoma", 13), variable=mMiyako)
-    labelMiyako.place(x=10, y=101)
+    Miyako = tk.Checkbutton(tabMaji, text="Miyako", font=("Tahoma", 13), variable=mMiyako)
+    Miyako.place(x=10, y=101)
 
-    labelYukie = tk.Checkbutton(tabMaji, text="Yukie", font=("Tahoma", 13), variable=mYukie)
-    labelYukie.place(x=10, y=127)
+    Yukie = tk.Checkbutton(tabMaji, text="Yukie", font=("Tahoma", 13), variable=mYukie)
+    Yukie.place(x=10, y=127)
 
-    labelKazuko = tk.Checkbutton(tabMaji, text="Kazuko", font=("Tahoma", 13), variable=mKazuko)
-    labelKazuko.place(x=10, y=153)
+    Kazuko = tk.Checkbutton(tabMaji, text="Kazuko", font=("Tahoma", 13), variable=mKazuko)
+    Kazuko.place(x=10, y=153)
 
-    labelKojima = tk.Checkbutton(tabMaji, text="Kojima-sensei", font=("Tahoma", 13), variable=mKojima)
-    labelKojima.place(x=166, y=49)
+    Kojima = tk.Checkbutton(tabMaji, text="Kojima-sensei", font=("Tahoma", 13), variable=mKojima)
+    Kojima.place(x=166, y=49)
 
-    labelChika = tk.Checkbutton(tabMaji, text="Chika", font=("Tahoma", 13), variable=mChika)
-    labelChika.place(x=166, y=75)
+    Chika = tk.Checkbutton(tabMaji, text="Chika", font=("Tahoma", 13), variable=mChika)
+    Chika.place(x=166, y=75)
 
-    labelMoro = tk.Checkbutton(tabMaji, text="Moro", font=("Tahoma", 13), variable=mMoro)
-    labelMoro.place(x=166, y=101)
+    Moro = tk.Checkbutton(tabMaji, text="Moro", font=("Tahoma", 13), variable=mMoro)
+    Moro.place(x=166, y=101)
 
-    labelCapt = tk.Checkbutton(tabMaji, text="Capt", font=("Tahoma", 13), variable=mCapt)
-    labelCapt.place(x=166, y=127)
+    Capt = tk.Checkbutton(tabMaji, text="Capt", font=("Tahoma", 13), variable=mCapt)
+    Capt.place(x=166, y=127)
 
-    labelGakuto = tk.Checkbutton(tabMaji, text="Gakuto", font=("Tahoma", 13), variable=mGakuto)
-    labelGakuto.place(x=166, y=153)
+    Gakuto = tk.Checkbutton(tabMaji, text="Gakuto", font=("Tahoma", 13), variable=mGakuto)
+    Gakuto.place(x=166, y=153)
 
-    labelHermitCrabs = tk.Checkbutton(tabMaji, text="Hermit Crabs", font=("Tahoma", 13), variable=mHermitCrabs)
-    labelHermitCrabs.place(x=166, y=179)
+    HermitCrabs = tk.Checkbutton(tabMaji, text="Hermit Crabs", font=("Tahoma", 13), variable=mHermitCrabs)
+    HermitCrabs.place(x=166, y=179)
 
-    labelNoRelationship = tk.Checkbutton(tabMaji, text="No Relationship", font=("Tahoma", 13), variable=mNoRelationship)
-    labelNoRelationship.place(x=166, y=205)
+    NoRelationship = tk.Checkbutton(tabMaji, text="No Relationship", font=("Tahoma", 13), variable=mNoRelationship)
+    NoRelationship.place(x=166, y=205)
 
-    labelMayo = tk.Checkbutton(tabMaji, text="Mayo", font=("Tahoma", 13), variable=mMayo)
-    labelMayo.place(x=166, y=231)
+    Mayo = tk.Checkbutton(tabMaji, text="Mayo", font=("Tahoma", 13), variable=mMayo)
+    Mayo.place(x=166, y=231)
 
-    labelTutorialRoom = tk.Checkbutton(tabMaji, text="Tutorial Room", font=("Tahoma", 13), variable=mTutorialRoom)
-    labelTutorialRoom.place(x=334, y=49)
+    TutorialRoom = tk.Checkbutton(tabMaji, text="Tutorial Room", font=("Tahoma", 13), variable=mTutorialRoom)
+    TutorialRoom.place(x=334, y=49)
 
-    labelAgave = tk.Checkbutton(tabMaji, text="Agave", font=("Tahoma", 13), variable=mAgave)
-    labelAgave.place(x=334, y=75)
+    Agave = tk.Checkbutton(tabMaji, text="Agave", font=("Tahoma", 13), variable=mAgave)
+    Agave.place(x=334, y=75)
 
-    labelMomoyoAfter = tk.Checkbutton(tabMaji, text="Momoyo After", font=("Tahoma", 13), variable=mMomoyoAfter)
-    labelMomoyoAfter.place(x=491, y=49)
+    MomoyoAfter = tk.Checkbutton(tabMaji, text="Momoyo After", font=("Tahoma", 13), variable=mMomoyoAfter)
+    MomoyoAfter.place(x=491, y=49)
 
-    labelMiyakoAfter = tk.Checkbutton(tabMaji, text="Miyako After", font=("Tahoma", 13), variable=mMiyakoAfter)
-    labelMiyakoAfter.place(x=491, y=75)
+    MiyakoAfter = tk.Checkbutton(tabMaji, text="Miyako After", font=("Tahoma", 13), variable=mMiyakoAfter)
+    MiyakoAfter.place(x=491, y=75)
 
-    labelYukieAfter = tk.Checkbutton(tabMaji, text="Yukie After", font=("Tahoma", 13), variable=mYukieAfter)
-    labelYukieAfter.place(x=491, y=101)
+    YukieAfter = tk.Checkbutton(tabMaji, text="Yukie After", font=("Tahoma", 13), variable=mYukieAfter)
+    YukieAfter.place(x=491, y=101)
 
-    labelKazukoAfter = tk.Checkbutton(tabMaji, text="Kazuko After", font=("Tahoma", 13), variable=mKazukoAfter)
-    labelKazukoAfter.place(x=491, y=127)
+    KazukoAfter = tk.Checkbutton(tabMaji, text="Kazuko After", font=("Tahoma", 13), variable=mKazukoAfter)
+    KazukoAfter.place(x=491, y=127)
 
     # Majikoi S TODO
     # Variables
+    global mSCommon; mSCommon = tk.IntVar()
+    global mSMonshiro; mSMonshiro = tk.IntVar()
+    global mSMonshiroCont; mSMonshiroCont= tk.IntVar()
+    global mSMargit; mSMargit = tk.IntVar()
+    global mSMargitCont; mSMargitCont = tk.IntVar()
+    global mSTsubame; mSTsubame = tk.IntVar()
+    global mSTsubameCont; mSTsubameCont = tk.IntVar()
+    global mSTsubameF1; mSTsubameF1 = tk.IntVar()
+    global mSTsubameF2; mSTsubameF2 = tk.IntVar()
+    global mSIyo; mSIyo = tk.IntVar()
+    global mSShima; mSShima = tk.IntVar()
+    global mSMaids; mSMaids = tk.IntVar()
+    global mSKazamaFam; mSKazamaFam = tk.IntVar()
+    global mSTatsuko; mSTatsuko = tk.IntVar()
+    global mSYumiko; mSYumiko = tk.IntVar()
+    global mSDevotedCrabs; mSDevotedCrabs = tk.IntVar()
+    global mSMiyakoAF1; mSMiyakoAF1 = tk.IntVar()
+    global mSMiyakoAF2; mSMiyakoAF2 = tk.IntVar()
+    global mSMiyakoAF3; mSMiyakoAF3 = tk.IntVar()
+    global mSChousokabe; mSChousokabe = tk.IntVar()
+    global mSKokoro; mSKokoro = tk.IntVar()
+    global mSNoRelationship; mSNoRelationship = tk.IntVar()
+    global mSKosugi; mSKosugi = tk.IntVar()
+    global mSKosugiCont; mSKosugiCont = tk.IntVar()
+    global mSChildhood; mSChildhood = tk.IntVar()
+    global mSKoyuki; mSKoyuki = tk.IntVar()
+    global mSKoyukiF; mSKoyukiF = tk.IntVar()
+    global mSTakae; mSTakae = tk.IntVar()
+    global mSMonshiroAfter; mSMonshiroAfter = tk.IntVar()
+    global mSKazukoS; mSKazukoS = tk.IntVar()
+    global mSMomoyoS; mSMomoyoS = tk.IntVar()
+    global mSMiyakoS; mSMiyakoS = tk.IntVar()
+    global mSYukieS; mSYukieS = tk.IntVar()
+    global mSChrisS; mSChrisS = tk.IntVar()
+    global mSTsubameAF1; mSTsubameAF1 = tk.IntVar()
+    global mSTsubameAF2; mSTsubameAF2 = tk.IntVar()
+    global mSHermitCrabsS; mSHermitCrabsS = tk.IntVar()
+    global mSAgaveAfter; mSAgaveAfter = tk.IntVar()
+
     # Labels
+    labelSMainRoutes = tk.Label(tabMajiS, text="Main Routes", font=("Tahoma", 15))
+    labelSMainRoutes.place(x=10, y=11)
+
+    labelSSubRoutes = tk.Label(tabMajiS, text="Sub Routes", font=("Tahoma", 15))
+    labelSSubRoutes.place(x=405, y=11)
+
+    labelSHiddenRoutes = tk.Label(tabMajiS, text="Hidden Routes", font=("Tahoma", 15))
+    labelSHiddenRoutes.place(x=10, y=261)
+
+    labelSAfterRoutes = tk.Label(tabMajiS, text="After Routes", font=("Tahoma", 15))
+    labelSAfterRoutes.place(x=385, y=261)
+
     # Checkbuttons
+    sCommon = tk.Checkbutton(tabMajiS, text="2nd Year 1st Semester", font=("Tahoma", 13), variable=mSCommon)
+    sCommon.place(x=10, y=49)
+
+    sMonshiro = tk.Checkbutton(tabMajiS, text="Monshiro", font=("Tahoma", 13), variable=mSMonshiro)
+    sMonshiro.place(x=10, y=75)
+
+    sMonshiroCont = tk.Checkbutton(tabMajiS, text="Monshiro Continued", font=("Tahoma", 13), variable=mSMonshiroCont)
+    sMonshiroCont.place(x=10, y=101)
+
+    sMargit = tk.Checkbutton(tabMajiS, text="Margit", font=("Tahoma", 13), variable=mSMargit)
+    sMargit.place(x=10, y=127)
+
+    sMargitCont = tk.Checkbutton(tabMajiS, text="Margit Continued", font=("Tahoma", 13), variable=mSMargitCont)
+    sMargitCont.place(x=10, y=153)
+
+    sTsubame = tk.Checkbutton(tabMajiS, text="Tsubame", font=("Tahoma", 13), variable=mSTsubame)
+    sTsubame.place(x=10, y=179)
+
+    sTsubameF1 = tk.Checkbutton(tabMajiS, text="Future Where Tsubame Takes the Lead", font=("Tahoma", 13), variable=mSTsubameF1)
+    sTsubameF1.place(x=10, y=205)
+
+    sTsubameF2 = tk.Checkbutton(tabMajiS, text="Future Where Yamato Takes the Lead", font=("Tahoma", 13), variable=mSTsubameF2)
+    sTsubameF2.place(x=10, y=231)
+
+    sIyo = tk.Checkbutton(tabMajiS, text="Iyo", font=("Tahoma", 13), variable=mSIyo)
+    sIyo.place(x=308, y=49)
+
+    sShima = tk.Checkbutton(tabMajiS, text="Future with Shima", font=("Tahoma", 13), variable=mSShima)
+    sShima.place(x=308, y=152)
+
+    sMaids = tk.Checkbutton(tabMajiS, text="Future with the Maids", font=("Tahoma", 13), variable=mSMaids)
+    sMaids.place(x=308, y=178)
+
+    sKazamaFam = tk.Checkbutton(tabMajiS, text="Future with the Kazama Family", font=("Tahoma", 13), variable=mSKazamaFam)
+    sKazamaFam.place(x=503, y=74)
+
+    sTatsuko = tk.Checkbutton(tabMajiS, text="Tatsuko", font=("Tahoma", 13), variable=mSTatsuko)
+    sTatsuko.place(x=308, y=74)
+
+    sYumiko = tk.Checkbutton(tabMajiS, text="Yumiko", font=("Tahoma", 13), variable=mSYumiko)
+    sYumiko.place(x=308, y=100)
+
+    sDevotedCrabs = tk.Checkbutton(tabMajiS, text="Future Devoted to Hermit Crabs", font=("Tahoma", 13), variable=mSDevotedCrabs)
+    sDevotedCrabs.place(x=503, y=100)
+
+    sMiyakoAF1 = tk.Checkbutton(tabMajiS, text="Another Future with Miyako 1", font=("Tahoma", 13), variable=mSMiyakoAF1)
+    sMiyakoAF1.place(x=503, y=126)
+
+    sMiyakoAF2 = tk.Checkbutton(tabMajiS, text="Another Future with Miyako 2", font=("Tahoma", 13), variable=mSMiyakoAF2)
+    sMiyakoAF2.place(x=503, y=152)
+
+    sMiyakoAF3 = tk.Checkbutton(tabMajiS, text="Another Future with Miyako 3", font=("Tahoma", 13), variable=mSMiyakoAF3)
+    sMiyakoAF3.place(x=503, y=178)
+
+    sChousokabe = tk.Checkbutton(tabMajiS, text="Future with Chousokabe", font=("Tahoma", 13), variable=mSChousokabe)
+    sChousokabe.place(x=405, y=204)
+
+    sKokoro = tk.Checkbutton(tabMajiS, text="Kokoro", font=("Tahoma", 13), variable=mSKokoro)
+    sKokoro.place(x=308, y=126)
+
+    sNoRelationship = tk.Checkbutton(tabMajiS, text="Future without a Relationship", font=("Tahoma", 13), variable=mSNoRelationship)
+    sNoRelationship.place(x=503, y=48)
+
+    sKosugi = tk.Checkbutton(tabMajiS, text="Kosugi", font=("Tahoma", 13), variable=mSKosugi)
+    sKosugi.place(x=10, y=299)
+
+    sKosugiCont = tk.Checkbutton(tabMajiS, text="Future with Kosugi Continued", font=("Tahoma", 13), variable=mSKosugiCont)
+    sKosugiCont.place(x=10, y=325)
+
+    sChildhood = tk.Checkbutton(tabMajiS, text="Childhood", font=("Tahoma", 13), variable=mSChildhood)
+    sChildhood.place(x=10, y=351)
+
+    sKoyuki = tk.Checkbutton(tabMajiS, text="Koyuki", font=("Tahoma", 13), variable=mSKoyuki)
+    sKoyuki.place(x=10, y=377)
+
+    sKoyukiF = tk.Checkbutton(tabMajiS, text="Future with Koyuki", font=("Tahoma", 13), variable=mSKoyukiF)
+    sKoyukiF.place(x=10, y=403)
+
+    sTakae = tk.Checkbutton(tabMajiS, text="Future Where You're An Acquaintance of Takae", font=("Tahoma", 13), variable=mSTakae)
+    sTakae.place(x=10, y=429)
+
+    sMonshiroAfter = tk.Checkbutton(tabMajiS, text="Monshiro After", font=("Tahoma", 13), variable=mSMonshiroAfter)
+    sMonshiroAfter.place(x=385, y=301)
+
+    sKazukoAfter = tk.Checkbutton(tabMajiS, text="Kazuko S After", font=("Tahoma", 13), variable=mSKazukoS)
+    sKazukoAfter.place(x=385, y=327)
+
+    sMomoyoAfter = tk.Checkbutton(tabMajiS, text="Momoyo S After", font=("Tahoma", 13), variable=mSMomoyoS)
+    sMomoyoAfter.place(x=385, y=353)
+
+    sMiyakoAfter = tk.Checkbutton(tabMajiS, text="Miyako S After", font=("Tahoma", 13), variable=mSMiyakoS)
+    sMiyakoAfter.place(x=385, y=379)
+
+    sYukieAfter = tk.Checkbutton(tabMajiS, text="Yukie S After", font=("Tahoma", 13), variable=mSYukieS)
+    sYukieAfter.place(x=385, y=405)
+
+    sChrisAfter = tk.Checkbutton(tabMajiS, text="Chris After + S After", font=("Tahoma", 13), variable=mSChrisS)
+    sChrisAfter.place(x=533, y=299)
+
+    sTsubameAF1 = tk.Checkbutton(tabMajiS, text="Future with Tsubame 1 After", font=("Tahoma", 13), variable=mSTsubameAF1)
+    sTsubameAF1.place(x=533, y=351)
+
+    sTsubameAF2 = tk.Checkbutton(tabMajiS, text="Future with Tsubame 2 After", font=("Tahoma", 13), variable=mSTsubameAF2)
+    sTsubameAF2.place(x=533, y=377)
+
+    sHermitCrabsS = tk.Checkbutton(tabMajiS, text="Future with Hermit Crabs S After", font=("Tahoma", 13), variable=mSHermitCrabsS)
+    sHermitCrabsS.place(x=533, y=403)
+
+    sAgaveAfter = tk.Checkbutton(tabMajiS, text="Agave After", font=("Tahoma", 13), variable=mSAgaveAfter)
+    sAgaveAfter.place(x=533, y=325)
+
     # Majikoi A-1
     # Variables
     global mA1BenkiVal; mA1BenkiVal = tk.IntVar()
