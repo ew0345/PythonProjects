@@ -12,28 +12,27 @@ def returnToLauncher():
 
 def deleteFiles():
     global deleted
-    files = [mState, mSState, mA1State, mA2State, mA3State, mA4State, mA5State]
+    files = [m1State, mSState, mA1State, mA2State, mA3State, mA4State, mA5State]
 
     for i in files:
         if os.path.isfile(i):
             os.remove(i)
-            print(f"Removed {i}")
-    
-    print("Deleted")
 
     deleted = True
 
 def writeStates(ret):
-    if deleted == False:
+    if deleted == True:
+        root.quit()
+    else:
         # TODO
-        # Majikoi TODO
+        # Majikoi
         mVars = [mMomoyo, mChris, mMiyako, mYukie, mKazuko, mKojima, mChika, mMoro, mCapt, mHermitCrabs, mNoRelationship, mMayo, mTutorialRoom, mAgave, mMomoyoAfter, mMiyakoAfter, mYukieAfter, mKazukoAfter]
 
         for i, var in enumerate(mVars):
-            mStates[i] = 0 if var.get() == 0 else 1
+            m1States[i] = 0 if var.get() == 0 else 1
 
-        with open(mState, "w") as f:
-            for item in mStates:
+        with open(m1State, "w") as f:
+            for item in m1States:
                 f.write("%s\n" % item)
         # Majikoi S TODO
         # Majikoi A-1
@@ -76,7 +75,7 @@ def writeStates(ret):
             for item in mA4States:
                 f.write("%s\n" % item)
 
-        # Majikoi A-5 TODO
+        # Majikoi A-5
         mA5Vars = [mA5YoshitsuneVal, mA5TakaeVal, mA5MargitVal]
 
         for i, var in enumerate(mA5Vars):
@@ -90,20 +89,18 @@ def writeStates(ret):
             root.quit()
         else:
             returnToLauncher()
-    else:
-        root.quit()
 
 def readStates():
     # TODO
     # Majikoi Routes Directory
     dirHome = os.path.expanduser("~")
-    dirMaji = "MajikoiRoutesPy"
+    dirMaji = "MajikoiRoutes"
     global dirPath; dirPath = os.path.join(dirHome, dirMaji)
     if not os.path.exists(dirPath):
         os.makedirs(dirPath)
 
     # Majikoi States Files
-    global mState; mState = dirPath+"/mState.txt"
+    global m1State; m1State = dirPath+"/m1State.txt"
     global mSState; mSState = dirPath+"/mSState.txt"
     global mA1State; mA1State = dirPath+"/mA1State.txt"
     global mA2State; mA2State = dirPath+"/mA2State.txt"
@@ -111,23 +108,23 @@ def readStates():
     global mA4State; mA4State = dirPath+"/mA4State.txt"
     global mA5State; mA5State = dirPath+"/mA5State.txt"
 
-     # Handle State files
+    # Handle State files
 
     # Majikoi
-    global mStates
-    if not os.path.isfile(mState):
-        with open(mState, "w") as f:
+    global m1States
+    if not os.path.isfile(m1State):
+        with open(m1State, "w") as f:
             f.write("0\n" * 19)
-        with open(mState, "r") as f:
-            mStates = [line.strip() for line in f.readlines()]
-    elif os.path.isfile(mState):
-        with open(mState, "r") as f:
-            mStates = [line.strip() for line in f.readlines()]
+        with open(m1State, "r") as f:
+            m1States = [line.strip() for line in f.readlines()]
+    elif os.path.isfile(m1State):
+        with open(m1State, "r") as f:
+            m1States = [line.strip() for line in f.readlines()]
 
     mVars = [mMomoyo, mChris, mMiyako, mYukie, mKazuko, mKojima, mChika, mMoro, mCapt, mHermitCrabs, mNoRelationship, mMayo, mTutorialRoom, mAgave, mMomoyoAfter, mMiyakoAfter, mYukieAfter, mKazukoAfter]
 
     for i, var in enumerate(mVars):
-        var.set(0 if int(mStates[i]) == 0 else 1)
+        var.set(0 if int(m1States[i]) == 0 else 1)
     
     # Majikoi S
     global mSStates
@@ -216,6 +213,7 @@ def readStates():
         var.set(0 if int(mA5States[i]) == 0 else 1)
 
 def init():
+    global deleted; deleted = False
     global root
     root = tk.Tk()
     # Set Window Size
@@ -478,12 +476,13 @@ def init():
     mA5Margit.place(x=269, y=34)
     
     # About
+    # Image
     try: 
         image = tk.PhotoImage(file="images/Icon3.png")
     except tk.TclError:
         image = tk.PhotoImage()
 
-    
+    # Labels
     labelImage = tk.Label(tabAbout, image=image)
     labelImage.place(x=249, y=13)
 
@@ -496,6 +495,7 @@ def init():
     labelAboutInfo = tk.Label(tabAbout, text="This program creates a folder and several files in your user home folder\nThe files are all contained within the folder \"MajikoiRoutes\", these can be safely deleted\nHowever deleting these files will reset the state of any checked boxes in the routes tabs.", font=("Tahoma", 14))
     labelAboutInfo.place(x=24, y=269)
 
+    # Buttons
     buttonDeleteFiles = tk.Button(tabAbout, text="Delete Files", font=("Tahoma", 30), width=34, height=2, command=deleteFiles)
     buttonDeleteFiles.place(x=22, y=392)
 
