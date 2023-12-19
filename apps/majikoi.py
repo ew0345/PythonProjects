@@ -10,61 +10,88 @@ def returnToLauncher():
     except Exception as e:
         print(f"Failed to launch launcher.py: {e}")
 
-def writeStates():
-    # TODO
-    # Majikoi TODO
-    # Majikoi S TODO
-    # Majikoi A-1
-    mA1Vars = [mA1BenkiVal, mA1AzumiVal, mA1SayakaVal]
+def deleteFiles():
+    global deleted
+    files = [mState, mSState, mA1State, mA2State, mA3State, mA4State, mA5State]
+
+    for i in files:
+        if os.path.isfile(i):
+            os.remove(i)
+            print(f"Removed {i}")
     
-    for i, var in enumerate(mA1Vars):
-        mA1States[i] = 0 if var.get() == 0 else 1
+    print("Deleted")
 
-    with open(mA1State, "w") as f:
-        for item in mA1States:
-            f.write("%s\n" % item)
+    deleted = True
 
-    # Majikoi A-2
-    mA2Vars = [mA2MonshiroVal, mA2AiessVal, mA2SeisoVal]
+def writeStates(ret):
+    if deleted == False:
+        # TODO
+        # Majikoi TODO
+        mVars = [mMomoyo, mChris, mMiyako, mYukie, mKazuko, mKojima, mChika, mMoro, mCapt, mHermitCrabs, mNoRelationship, mMayo, mTutorialRoom, mAgave, mMomoyoAfter, mMiyakoAfter, mYukieAfter, mKazukoAfter]
 
-    for i, var in enumerate(mA2Vars):
-        mA2States[i] = 0 if var.get() == 0 else 1
-    
-    with open(mA2State, "w") as f:
-        for item in mA2States:
-            f.write("%s\n" % item)
+        for i, var in enumerate(mVars):
+            mStates[i] = 0 if var.get() == 0 else 1
 
-    # Majikoi A-3
-    mA3Vars = [mA3LeeVal, mA3StacyVal, mA3TsubameVal]
+        with open(mState, "w") as f:
+            for item in mStates:
+                f.write("%s\n" % item)
+        # Majikoi S TODO
+        # Majikoi A-1
+        mA1Vars = [mA1BenkiVal, mA1AzumiVal, mA1SayakaVal]
+        
+        for i, var in enumerate(mA1Vars):
+            mA1States[i] = 0 if var.get() == 0 else 1
 
-    for i, var in enumerate(mA3Vars):
-        mA3States[i] = 0 if var.get() == 0 else 1
+        with open(mA1State, "w") as f:
+            for item in mA1States:
+                f.write("%s\n" % item)
 
-    with open(mA3State, "w") as f:
-        for item in mA3States:
-            f.write("%s\n" % item)
-    
-    # Majikoi A-4 
-    mA4Vars = [mA4LinVal, mA4HomuraVal]
+        # Majikoi A-2
+        mA2Vars = [mA2MonshiroVal, mA2AiessVal, mA2SeisoVal]
 
-    for i, var in enumerate(mA4Vars):
-        mA4States[i] = 0 if var.get() == 0 else 1
+        for i, var in enumerate(mA2Vars):
+            mA2States[i] = 0 if var.get() == 0 else 1
+        
+        with open(mA2State, "w") as f:
+            for item in mA2States:
+                f.write("%s\n" % item)
 
-    with open(mA4State, "w") as f:
-        for item in mA4States:
-            f.write("%s\n" % item)
+        # Majikoi A-3
+        mA3Vars = [mA3LeeVal, mA3StacyVal, mA3TsubameVal]
 
-    # Majikoi A-5 TODO
-    mA5Vars = [mA5YoshitsuneVal, mA5TakaeVal, mA5MargitVal]
+        for i, var in enumerate(mA3Vars):
+            mA3States[i] = 0 if var.get() == 0 else 1
 
-    for i, var in enumerate(mA5Vars):
-        mA5States[i] = 0 if var.get() == 0 else 1
+        with open(mA3State, "w") as f:
+            for item in mA3States:
+                f.write("%s\n" % item)
+        
+        # Majikoi A-4 
+        mA4Vars = [mA4LinVal, mA4HomuraVal]
 
-    with open(mA5State, "w") as f:
-        for item in mA5States:
-            f.write("%s\n" % item)
+        for i, var in enumerate(mA4Vars):
+            mA4States[i] = 0 if var.get() == 0 else 1
 
-    root.quit()
+        with open(mA4State, "w") as f:
+            for item in mA4States:
+                f.write("%s\n" % item)
+
+        # Majikoi A-5 TODO
+        mA5Vars = [mA5YoshitsuneVal, mA5TakaeVal, mA5MargitVal]
+
+        for i, var in enumerate(mA5Vars):
+            mA5States[i] = 0 if var.get() == 0 else 1
+
+        with open(mA5State, "w") as f:
+            for item in mA5States:
+                f.write("%s\n" % item)
+
+        if ret == False:
+            root.quit()
+        else:
+            returnToLauncher()
+    else:
+        root.quit()
 
 def readStates():
     # TODO
@@ -87,11 +114,23 @@ def readStates():
      # Handle State files
 
     # Majikoi
+    global mStates
     if not os.path.isfile(mState):
         with open(mState, "w") as f:
             f.write("0\n" * 19)
+        with open(mState, "r") as f:
+            mStates = [line.strip() for line in f.readlines()]
+    elif os.path.isfile(mState):
+        with open(mState, "r") as f:
+            mStates = [line.strip() for line in f.readlines()]
+
+    mVars = [mMomoyo, mChris, mMiyako, mYukie, mKazuko, mKojima, mChika, mMoro, mCapt, mHermitCrabs, mNoRelationship, mMayo, mTutorialRoom, mAgave, mMomoyoAfter, mMiyakoAfter, mYukieAfter, mKazukoAfter]
+
+    for i, var in enumerate(mVars):
+        var.set(0 if int(mStates[i]) == 0 else 1)
     
     # Majikoi S
+    global mSStates
     if not os.path.isfile(mSState):
         with open(mSState, "w") as f:
             f.write("0\n" * 37)
@@ -192,7 +231,7 @@ def init():
     # Menubar
     menu = tk.Menu(root)
     menuFile = tk.Menu(menu, tearoff=0)
-    menuFile.add_command(label="Return to Launcher", command=returnToLauncher)
+    menuFile.add_command(label="Return to Launcher", command=lambda: writeStates(True))
     menu.add_cascade(label="File", menu=menuFile)
     root.config(menu=menu)
 
@@ -218,10 +257,99 @@ def init():
 
     notebook.pack(expand=True, fill="both")
 
-    # Majikoi TODO
+    # Majikoi
     # Variables
+    global mMomoyo; mMomoyo = tk.IntVar()
+    global mChris; mChris = tk.IntVar()
+    global mMiyako; mMiyako = tk.IntVar()
+    global mYukie; mYukie = tk.IntVar()
+    global mKazuko; mKazuko = tk.IntVar()
+    global mKojima; mKojima = tk.IntVar()
+    global mChika; mChika = tk.IntVar()
+    global mMoro; mMoro = tk.IntVar()
+    global mCapt; mCapt = tk.IntVar()
+    global mGakuto; mGakuto = tk.IntVar()
+    global mHermitCrabs; mHermitCrabs = tk.IntVar()
+    global mNoRelationship; mNoRelationship = tk.IntVar()
+    global mMayo; mMayo = tk.IntVar()
+    global mTutorialRoom; mTutorialRoom = tk.IntVar()
+    global mAgave; mAgave = tk.IntVar()
+    global mMomoyoAfter; mMomoyoAfter = tk.IntVar()
+    global mMiyakoAfter; mMiyakoAfter = tk.IntVar()
+    global mYukieAfter; mYukieAfter = tk.IntVar()
+    global mKazukoAfter; mKazukoAfter = tk.IntVar()
+
     # Labels
+    labelMainRoutes = tk.Label(tabMaji, text="Main Routes", font=("Tahoma", 15))
+    labelMainRoutes.place(x=10, y=11)
+
+    labelSubRoutes = tk.Label(tabMaji, text="Sub Routes", font=("Tahoma", 15))
+    labelSubRoutes.place(x=166, y=11)
+
+    labelHiddenRoutes = tk.Label(tabMaji, text="Hidden Routes", font=("Tahoma", 15))
+    labelHiddenRoutes.place(x=334, y=11)
+
+    labelAfterRoutes = tk.Label(tabMaji, text="After Routes", font=("Tahoma", 15))
+    labelAfterRoutes.place(x=491, y=11)
+
     # Checkbuttons
+    labelMomoyo = tk.Checkbutton(tabMaji, text="Momoyo", font=("Tahoma", 13), variable=mMomoyo)
+    labelMomoyo.place(x=10, y=49)
+
+    labelChris = tk.Checkbutton(tabMaji, text="Chris", font=("Tahoma", 13), variable=mChris)
+    labelChris.place(x=10, y=75)
+
+    labelMiyako = tk.Checkbutton(tabMaji, text="Miyako", font=("Tahoma", 13), variable=mMiyako)
+    labelMiyako.place(x=10, y=101)
+
+    labelYukie = tk.Checkbutton(tabMaji, text="Yukie", font=("Tahoma", 13), variable=mYukie)
+    labelYukie.place(x=10, y=127)
+
+    labelKazuko = tk.Checkbutton(tabMaji, text="Kazuko", font=("Tahoma", 13), variable=mKazuko)
+    labelKazuko.place(x=10, y=153)
+
+    labelKojima = tk.Checkbutton(tabMaji, text="Kojima-sensei", font=("Tahoma", 13), variable=mKojima)
+    labelKojima.place(x=166, y=49)
+
+    labelChika = tk.Checkbutton(tabMaji, text="Chika", font=("Tahoma", 13), variable=mChika)
+    labelChika.place(x=166, y=75)
+
+    labelMoro = tk.Checkbutton(tabMaji, text="Moro", font=("Tahoma", 13), variable=mMoro)
+    labelMoro.place(x=166, y=101)
+
+    labelCapt = tk.Checkbutton(tabMaji, text="Capt", font=("Tahoma", 13), variable=mCapt)
+    labelCapt.place(x=166, y=127)
+
+    labelGakuto = tk.Checkbutton(tabMaji, text="Gakuto", font=("Tahoma", 13), variable=mGakuto)
+    labelGakuto.place(x=166, y=153)
+
+    labelHermitCrabs = tk.Checkbutton(tabMaji, text="Hermit Crabs", font=("Tahoma", 13), variable=mHermitCrabs)
+    labelHermitCrabs.place(x=166, y=179)
+
+    labelNoRelationship = tk.Checkbutton(tabMaji, text="No Relationship", font=("Tahoma", 13), variable=mNoRelationship)
+    labelNoRelationship.place(x=166, y=205)
+
+    labelMayo = tk.Checkbutton(tabMaji, text="Mayo", font=("Tahoma", 13), variable=mMayo)
+    labelMayo.place(x=166, y=231)
+
+    labelTutorialRoom = tk.Checkbutton(tabMaji, text="Tutorial Room", font=("Tahoma", 13), variable=mTutorialRoom)
+    labelTutorialRoom.place(x=334, y=49)
+
+    labelAgave = tk.Checkbutton(tabMaji, text="Agave", font=("Tahoma", 13), variable=mAgave)
+    labelAgave.place(x=334, y=75)
+
+    labelMomoyoAfter = tk.Checkbutton(tabMaji, text="Momoyo After", font=("Tahoma", 13), variable=mMomoyoAfter)
+    labelMomoyoAfter.place(x=491, y=49)
+
+    labelMiyakoAfter = tk.Checkbutton(tabMaji, text="Miyako After", font=("Tahoma", 13), variable=mMiyakoAfter)
+    labelMiyakoAfter.place(x=491, y=75)
+
+    labelYukieAfter = tk.Checkbutton(tabMaji, text="Yukie After", font=("Tahoma", 13), variable=mYukieAfter)
+    labelYukieAfter.place(x=491, y=101)
+
+    labelKazukoAfter = tk.Checkbutton(tabMaji, text="Kazuko After", font=("Tahoma", 13), variable=mKazukoAfter)
+    labelKazukoAfter.place(x=491, y=127)
+
     # Majikoi S TODO
     # Variables
     # Labels
@@ -278,7 +406,7 @@ def init():
     mA2Seiso = tk.Checkbutton(tabA2, text="Completed", font=("Tahoma", 11), variable=mA2SeisoVal)
     mA2Seiso.place(x=269, y=34)
 
-    # Majikoi A-3 TODO
+    # Majikoi A-3
     # Variables
     global mA3LeeVal; mA3LeeVal = tk.IntVar()
     global mA3StacyVal; mA3StacyVal = tk.IntVar()
@@ -323,7 +451,7 @@ def init():
     mA4Homura = tk.Checkbutton(tabA4, text="Complete", font=("Tahoma", 11), variable=mA4HomuraVal)
     mA4Homura.place(x=147, y=34)
 
-    # Majikoi A-5 TODO
+    # Majikoi A-5
     # Variables
     global mA5YoshitsuneVal; mA5YoshitsuneVal = tk.IntVar()
     global mA5TakaeVal; mA5TakaeVal = tk.IntVar()
@@ -368,13 +496,13 @@ def init():
     labelAboutInfo = tk.Label(tabAbout, text="This program creates a folder and several files in your user home folder\nThe files are all contained within the folder \"MajikoiRoutes\", these can be safely deleted\nHowever deleting these files will reset the state of any checked boxes in the routes tabs.", font=("Tahoma", 14))
     labelAboutInfo.place(x=24, y=269)
 
-    buttonDeleteFiles = tk.Button(tabAbout, text="Delete Files", font=("Tahoma", 30), width=34, height=2)
+    buttonDeleteFiles = tk.Button(tabAbout, text="Delete Files", font=("Tahoma", 30), width=34, height=2, command=deleteFiles)
     buttonDeleteFiles.place(x=22, y=392)
 
     # Persistence
     readStates()
 
-    root.protocol("WM_DELETE_WINDOW", writeStates)
+    root.protocol("WM_DELETE_WINDOW", lambda: writeStates(False))
     root.mainloop()
 
 init()
