@@ -3,7 +3,7 @@ import subprocess
 
 def open(app):
     # What application to open when a button is clicked
-    apps = {0: "scc.py", 1: "archcalc.py", 2: "majikoi.py"}
+    apps = {0: "scc.py", 1: "archcalc.py", 2: "majikoi.py", 3: "stringgen.py"}
     try:
         subprocess.Popen(["py", "apps/"+apps[app]])
         root.quit()
@@ -54,6 +54,9 @@ def init():
 
     buttonMaji = tk.Button(root, text="Majikoi Route Tracker", width=18, command=lambda: open(2))
     buttonMaji.place(x=10, y=90)
+
+    buttonStrGen = tk.Button(root, text="Generate Strings", width=18, command=lambda: open(3))
+    buttonStrGen.place(x=10, y=120)
 
     root.mainloop()
 
