@@ -1,7 +1,6 @@
 import tkinter as tk
 import os
 import subprocess
-from random import randint as ri
 from random import choice as rc
 
 def returnToLauncher():
