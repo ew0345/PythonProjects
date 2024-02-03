@@ -2,6 +2,7 @@ import tkinter as tk
 import os
 import subprocess
 from random import choice as rc
+from tkinter import filedialog
 
 def returnToLauncher():
     try:
@@ -13,7 +14,10 @@ def returnToLauncher():
 def generateString(length, amount, type, location):
     # Create File for Storing Strings
     fileStr = os.path.expanduser("~")+"/GeneratedStrings.txt"
-    if location == 1: fileStr = "./GenerateStrings.txt"
+    if location == 1: 
+        fileStr = "./GenerateStrings.txt"
+    elif location == 0:
+        fileStr = filedialog.asksaveasfilename(defaultextension=".txt", filetypes=[("Text files", "*.txt"), ("All files", "*.*")])
 
     # Convert type to a numberical value
     typeDict = {opt[i]: i for i in range(len(opt))}
