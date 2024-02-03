@@ -10,9 +10,10 @@ def returnToLauncher():
     except Exception as e:
         print(f"Failed to launch launcher.py: {e}")
 
-def generateString(length, amount, type):
+def generateString(length, amount, type, location):
     # Create File for Storing Strings
     fileStr = os.path.expanduser("~")+"/GeneratedStrings.txt"
+    if location == 1: fileStr = "./GenerateStrings.txt"
 
     # Convert type to a numberical value
     typeDict = {opt[i]: i for i in range(len(opt))}
@@ -86,6 +87,8 @@ def init():
     # Menubar
     menu = tk.Menu(root)
     menuFile = tk.Menu(menu, tearoff=0)
+    generateInFolder = tk.IntVar()
+    menuFile.add_checkbutton(label="Generate File in Program Folder", variable=generateInFolder)
     menuFile.add_command(label="Return to Launcher", command=returnToLauncher)
     menu.add_cascade(label="File", menu=menuFile)
     root.config(menu=menu)
@@ -118,7 +121,7 @@ def init():
     ddStrType.place(x=10, y=90)
 
     # Buttons
-    buttonGenerate = tk.Button(root, text="Generate", width=40, command=lambda: generateString(int(sbStrLength.get()), int(sbStrAmount.get()), ddOpt.get()))
+    buttonGenerate = tk.Button(root, text="Generate", width=40, command=lambda: generateString(int(sbStrLength.get()), int(sbStrAmount.get()), ddOpt.get(), int(generateInFolder.get())))
     buttonGenerate.place(x=4, y=147)
 
 
