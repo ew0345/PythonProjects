@@ -1,5 +1,6 @@
 import tkinter as tk
 import subprocess
+from tkinter import ttk
 
 def open(app):
     # What application to open when a button is clicked
@@ -46,17 +47,17 @@ def init():
     labelMadeBy.place(x=150, y=89)
 
     # Buttons
-    buttonSCC = tk.Button(root, text="Sheer Cold Calculator", width=18, command=lambda: open(0))
-    buttonSCC.place(x=10, y=30)
+    buttonSCC = ttk.Button(root, text="Sheer Cold Calculator", width=18, command=lambda: open(0))
+    buttonSCC.place(x=1, y=30)
 
-    buttonArch = tk.Button(root, text="Arch Tome Calculator", width=18, command=lambda: open(1))
-    buttonArch.place(x=10, y=60)
+    buttonArch = ttk.Button(root, text="Arch Tome Calculator", width=18, command=lambda: open(1))
+    buttonArch.place(x=1, y=60)
 
-    buttonMaji = tk.Button(root, text="Majikoi Route Tracker", width=18, command=lambda: open(2))
-    buttonMaji.place(x=10, y=90)
+    buttonMaji = ttk.Button(root, text="Majikoi Route Tracker", width=18, command=lambda: open(2))
+    buttonMaji.place(x=1, y=90)
 
-    buttonStrGen = tk.Button(root, text="Generate Strings", width=18, command=lambda: open(3))
-    buttonStrGen.place(x=10, y=120)
+    buttonStrGen = ttk.Button(root, text="Generate Strings", width=18, command=lambda: open(3))
+    buttonStrGen.place(x=1, y=120)
 
     root.mainloop()
 

@@ -1,5 +1,6 @@
 import tkinter as tk
 import subprocess
+from tkinter import ttk
 
 def returnToLauncher():
     try:
@@ -69,10 +70,10 @@ def init():
     labelMadeBy.place(x=150, y=89)
 
     # Inputs
-    userLevel = tk.Spinbox(root, from_=1, to=120, width=3)
+    userLevel = ttk.Spinbox(root, from_=1, to=120, width=4)
     userLevel.place(x=80, y=35)
 
-    spotLevel = tk.Spinbox(root, from_=1, to=120, width=3)
+    spotLevel = ttk.Spinbox(root, from_=1, to=120, width=4)
     spotLevel.place(x=80, y=60)
 
     # Set Defaults for Spinboxes
@@ -83,7 +84,7 @@ def init():
     spotLevel.insert(0, "120")
 
     # Buttons
-    buttonCalculate = tk.Button(root, text="Calculate", command=lambda: calculate(userLevel.get(), spotLevel.get()))
+    buttonCalculate = ttk.Button(root, text="Calculate", command=lambda: calculate(userLevel.get(), spotLevel.get()))
     buttonCalculate.place(x=34, y=85)
 
     root.mainloop()

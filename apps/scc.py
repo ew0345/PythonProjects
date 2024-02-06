@@ -1,5 +1,6 @@
 import tkinter as tk
 import subprocess
+from tkinter import ttk
 
 def returnToLauncher():
     try:
@@ -73,10 +74,10 @@ def init():
     labelMadeBy.place(x=150, y=89)
 
     # Inputs
-    userLevel = tk.Spinbox(root, from_=1, to=100, width=3)
+    userLevel = ttk.Spinbox(root, from_=1, to=100, width=4)
     userLevel.place(x=94, y=32)
 
-    enemyLevel = tk.Spinbox(root, from_=1, to=100, width=3)
+    enemyLevel = ttk.Spinbox(root, from_=1, to=100, width=4)
     enemyLevel.place(x=94, y=57)
 
     # Set the default values of the Spinboxes
@@ -88,15 +89,15 @@ def init():
 
     # Checkboxes
     gameGenVar = tk.IntVar()
-    gameGen = tk.Checkbutton(root, text="Gen 7+", variable=gameGenVar)
+    gameGen = ttk.Checkbutton(root, text="Gen 7+", variable=gameGenVar)
     gameGen.place(x=10, y=140)
 
     isIceTypeVar = tk.IntVar()
-    isIceType = tk.Checkbutton(root, text="User is Ice Type?", variable=isIceTypeVar)
+    isIceType = ttk.Checkbutton(root, text="User is Ice Type?", variable=isIceTypeVar)
     isIceType.place(x=85, y=140)
 
     # Buttons
-    buttonCalculate = tk.Button(root, text="Calculate", command=lambda: calculate(userLevel.get(), enemyLevel.get(), isIceTypeVar.get(), gameGenVar.get()))
+    buttonCalculate = ttk.Button(root, text="Calculate", command=lambda: calculate(userLevel.get(), enemyLevel.get(), isIceTypeVar.get(), gameGenVar.get()))
     buttonCalculate.place(x=34, y=85)    
 
     root.mainloop()

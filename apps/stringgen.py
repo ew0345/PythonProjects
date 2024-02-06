@@ -3,6 +3,7 @@ import os
 import subprocess
 from random import choice as rc
 from tkinter import filedialog
+from tkinter import ttk
 
 def returnToLauncher():
     try:
@@ -108,11 +109,11 @@ def init():
     labelStrType.place(x=20, y=60)
 
     # Spinbox
-    sbStrLength = tk.Spinbox(root, width=10)
+    sbStrLength = ttk.Spinbox(root, width=10)
     sbStrLength.insert(0, "10")
     sbStrLength.place(x=20, y=30)
 
-    sbStrAmount = tk.Spinbox(root, width=10)
+    sbStrAmount = ttk.Spinbox(root, width=10)
     sbStrAmount.insert(0, "10")
     sbStrAmount.place(x=110, y=30)
 
@@ -121,11 +122,11 @@ def init():
     opt = ["All", "Letters", "Letters & Numbers", "Letters & Symbols", "Letters & Modifier Symbols", "Letters & Base Symbols", "Uppercase Letters", "Uppercase Letters & Numbers", "Uppercase Letters & Symbols", "Uppercase Letters & Modifier Symbols", "Uppercase Letters & Base Symbols", "Lowercase Letters", "Lowercase Letters & Numbers", "Lowercase Letters & Symbols", "Lowercase Letters & Modifier Symbols", "Lowercase Letters & Base Symbols", "Numbers", "Numbers & Symbols", "Numbers & Modifier Symbols", "Numbers & Base Symbols", "Symbols", "Modifier Symbols", "Base Symbols"]
     ddOpt = tk.StringVar(root)
     ddOpt.set(opt[0])
-    ddStrType = tk.OptionMenu(root, ddOpt, *opt)
+    ddStrType = ttk.OptionMenu(root, ddOpt, *opt)
     ddStrType.place(x=10, y=90)
 
     # Buttons
-    buttonGenerate = tk.Button(root, text="Generate", width=40, command=lambda: generateString(int(sbStrLength.get()), int(sbStrAmount.get()), ddOpt.get(), int(generateInFolder.get())))
+    buttonGenerate = ttk.Button(root, text="Generate", width=40, command=lambda: generateString(int(sbStrLength.get()), int(sbStrAmount.get()), ddOpt.get(), int(generateInFolder.get())))
     buttonGenerate.place(x=4, y=147)
 
 

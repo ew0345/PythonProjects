@@ -1,7 +1,7 @@
 import os
 import tkinter as tk
-from tkinter import ttk
 import subprocess
+from tkinter import ttk
 
 def returnToLauncher():
     try:
@@ -100,7 +100,6 @@ def writeStates(ret):
             returnToLauncher()
 
 def readStates():
-    # TODO
     # Majikoi Routes Directory
     dirHome = os.path.expanduser("~")
     dirMaji = "MajikoiRoutes"
@@ -245,6 +244,11 @@ def init():
     except Exception:
         root.iconbitmap()
 
+    # TTK Style Info
+    style = ttk.Style()
+    style.configure("Custom.TCheckbutton", font=("Tahoma", 13))
+    style.configure("Custom.TButton", font=("Tahoma", 30), padding=(0, 50))
+
     # Menubar
     menu = tk.Menu(root)
     menuFile = tk.Menu(menu, tearoff=0)
@@ -310,61 +314,61 @@ def init():
     labelAfterRoutes.place(x=491, y=11)
 
     # Checkbuttons
-    Momoyo = tk.Checkbutton(tabMaji, text="Momoyo", font=("Tahoma", 13), variable=mMomoyo)
+    Momoyo = ttk.Checkbutton(tabMaji, text="Momoyo", style="Custom.TCheckbutton", variable=mMomoyo)
     Momoyo.place(x=10, y=49)
 
-    Chris = tk.Checkbutton(tabMaji, text="Chris", font=("Tahoma", 13), variable=mChris)
+    Chris = ttk.Checkbutton(tabMaji, text="Chris", style="Custom.TCheckbutton", variable=mChris)
     Chris.place(x=10, y=75)
 
-    Miyako = tk.Checkbutton(tabMaji, text="Miyako", font=("Tahoma", 13), variable=mMiyako)
+    Miyako = ttk.Checkbutton(tabMaji, text="Miyako", style="Custom.TCheckbutton", variable=mMiyako)
     Miyako.place(x=10, y=101)
 
-    Yukie = tk.Checkbutton(tabMaji, text="Yukie", font=("Tahoma", 13), variable=mYukie)
+    Yukie = ttk.Checkbutton(tabMaji, text="Yukie", style="Custom.TCheckbutton", variable=mYukie)
     Yukie.place(x=10, y=127)
 
-    Kazuko = tk.Checkbutton(tabMaji, text="Kazuko", font=("Tahoma", 13), variable=mKazuko)
+    Kazuko = ttk.Checkbutton(tabMaji, text="Kazuko", style="Custom.TCheckbutton", variable=mKazuko)
     Kazuko.place(x=10, y=153)
 
-    Kojima = tk.Checkbutton(tabMaji, text="Kojima-sensei", font=("Tahoma", 13), variable=mKojima)
+    Kojima = ttk.Checkbutton(tabMaji, text="Kojima-sensei", style="Custom.TCheckbutton", variable=mKojima)
     Kojima.place(x=166, y=49)
 
-    Chika = tk.Checkbutton(tabMaji, text="Chika", font=("Tahoma", 13), variable=mChika)
+    Chika = ttk.Checkbutton(tabMaji, text="Chika", style="Custom.TCheckbutton", variable=mChika)
     Chika.place(x=166, y=75)
 
-    Moro = tk.Checkbutton(tabMaji, text="Moro", font=("Tahoma", 13), variable=mMoro)
+    Moro = ttk.Checkbutton(tabMaji, text="Moro", style="Custom.TCheckbutton", variable=mMoro)
     Moro.place(x=166, y=101)
 
-    Capt = tk.Checkbutton(tabMaji, text="Capt", font=("Tahoma", 13), variable=mCapt)
+    Capt = ttk.Checkbutton(tabMaji, text="Capt", style="Custom.TCheckbutton", variable=mCapt)
     Capt.place(x=166, y=127)
 
-    Gakuto = tk.Checkbutton(tabMaji, text="Gakuto", font=("Tahoma", 13), variable=mGakuto)
+    Gakuto = ttk.Checkbutton(tabMaji, text="Gakuto", style="Custom.TCheckbutton", variable=mGakuto)
     Gakuto.place(x=166, y=153)
 
-    HermitCrabs = tk.Checkbutton(tabMaji, text="Hermit Crabs", font=("Tahoma", 13), variable=mHermitCrabs)
+    HermitCrabs = ttk.Checkbutton(tabMaji, text="Hermit Crabs", style="Custom.TCheckbutton", variable=mHermitCrabs)
     HermitCrabs.place(x=166, y=179)
 
-    NoRelationship = tk.Checkbutton(tabMaji, text="No Relationship", font=("Tahoma", 13), variable=mNoRelationship)
+    NoRelationship = ttk.Checkbutton(tabMaji, text="No Relationship", style="Custom.TCheckbutton", variable=mNoRelationship)
     NoRelationship.place(x=166, y=205)
 
-    Mayo = tk.Checkbutton(tabMaji, text="Mayo", font=("Tahoma", 13), variable=mMayo)
+    Mayo = ttk.Checkbutton(tabMaji, text="Mayo", style="Custom.TCheckbutton", variable=mMayo)
     Mayo.place(x=166, y=231)
 
-    TutorialRoom = tk.Checkbutton(tabMaji, text="Tutorial Room", font=("Tahoma", 13), variable=mTutorialRoom)
+    TutorialRoom = ttk.Checkbutton(tabMaji, text="Tutorial Room", style="Custom.TCheckbutton", variable=mTutorialRoom)
     TutorialRoom.place(x=334, y=49)
 
-    Agave = tk.Checkbutton(tabMaji, text="Agave", font=("Tahoma", 13), variable=mAgave)
+    Agave = ttk.Checkbutton(tabMaji, text="Agave", style="Custom.TCheckbutton", variable=mAgave)
     Agave.place(x=334, y=75)
 
-    MomoyoAfter = tk.Checkbutton(tabMaji, text="Momoyo After", font=("Tahoma", 13), variable=mMomoyoAfter)
+    MomoyoAfter = ttk.Checkbutton(tabMaji, text="Momoyo After", style="Custom.TCheckbutton", variable=mMomoyoAfter)
     MomoyoAfter.place(x=491, y=49)
 
-    MiyakoAfter = tk.Checkbutton(tabMaji, text="Miyako After", font=("Tahoma", 13), variable=mMiyakoAfter)
+    MiyakoAfter = ttk.Checkbutton(tabMaji, text="Miyako After", style="Custom.TCheckbutton", variable=mMiyakoAfter)
     MiyakoAfter.place(x=491, y=75)
 
-    YukieAfter = tk.Checkbutton(tabMaji, text="Yukie After", font=("Tahoma", 13), variable=mYukieAfter)
+    YukieAfter = ttk.Checkbutton(tabMaji, text="Yukie After", style="Custom.TCheckbutton", variable=mYukieAfter)
     YukieAfter.place(x=491, y=101)
 
-    KazukoAfter = tk.Checkbutton(tabMaji, text="Kazuko After", font=("Tahoma", 13), variable=mKazukoAfter)
+    KazukoAfter = ttk.Checkbutton(tabMaji, text="Kazuko After", style="Custom.TCheckbutton", variable=mKazukoAfter)
     KazukoAfter.place(x=491, y=127)
 
     # Majikoi S TODO
@@ -422,115 +426,115 @@ def init():
     labelSAfterRoutes.place(x=385, y=261)
 
     # Checkbuttons
-    sCommon = tk.Checkbutton(tabMajiS, text="2nd Year 1st Semester", font=("Tahoma", 13), variable=mSCommon)
+    sCommon = ttk.Checkbutton(tabMajiS, text="2nd Year 1st Semester", style="Custom.TCheckbutton", variable=mSCommon)
     sCommon.place(x=10, y=49)
 
-    sMonshiro = tk.Checkbutton(tabMajiS, text="Monshiro", font=("Tahoma", 13), variable=mSMonshiro)
+    sMonshiro = ttk.Checkbutton(tabMajiS, text="Monshiro", style="Custom.TCheckbutton", variable=mSMonshiro)
     sMonshiro.place(x=10, y=75)
 
-    sMonshiroCont = tk.Checkbutton(tabMajiS, text="Monshiro Continued", font=("Tahoma", 13), variable=mSMonshiroCont)
+    sMonshiroCont = ttk.Checkbutton(tabMajiS, text="Monshiro Continued", style="Custom.TCheckbutton", variable=mSMonshiroCont)
     sMonshiroCont.place(x=10, y=101)
 
-    sMargit = tk.Checkbutton(tabMajiS, text="Margit", font=("Tahoma", 13), variable=mSMargit)
+    sMargit = ttk.Checkbutton(tabMajiS, text="Margit", style="Custom.TCheckbutton", variable=mSMargit)
     sMargit.place(x=10, y=127)
 
-    sMargitCont = tk.Checkbutton(tabMajiS, text="Margit Continued", font=("Tahoma", 13), variable=mSMargitCont)
+    sMargitCont = ttk.Checkbutton(tabMajiS, text="Margit Continued", style="Custom.TCheckbutton", variable=mSMargitCont)
     sMargitCont.place(x=10, y=153)
 
-    sTsubame = tk.Checkbutton(tabMajiS, text="Tsubame", font=("Tahoma", 13), variable=mSTsubame)
+    sTsubame = ttk.Checkbutton(tabMajiS, text="Tsubame", style="Custom.TCheckbutton", variable=mSTsubame)
     sTsubame.place(x=10, y=179)
 
-    sTsubameF1 = tk.Checkbutton(tabMajiS, text="Future Where Tsubame Takes the Lead", font=("Tahoma", 13), variable=mSTsubameF1)
+    sTsubameF1 = ttk.Checkbutton(tabMajiS, text="Future Where Tsubame Takes the Lead", style="Custom.TCheckbutton", variable=mSTsubameF1)
     sTsubameF1.place(x=10, y=205)
 
-    sTsubameF2 = tk.Checkbutton(tabMajiS, text="Future Where Yamato Takes the Lead", font=("Tahoma", 13), variable=mSTsubameF2)
+    sTsubameF2 = ttk.Checkbutton(tabMajiS, text="Future Where Yamato Takes the Lead", style="Custom.TCheckbutton", variable=mSTsubameF2)
     sTsubameF2.place(x=10, y=231)
 
-    sIyo = tk.Checkbutton(tabMajiS, text="Iyo", font=("Tahoma", 13), variable=mSIyo)
+    sIyo = ttk.Checkbutton(tabMajiS, text="Iyo", style="Custom.TCheckbutton", variable=mSIyo)
     sIyo.place(x=308, y=49)
 
-    sShima = tk.Checkbutton(tabMajiS, text="Future with Shima", font=("Tahoma", 13), variable=mSShima)
+    sShima = ttk.Checkbutton(tabMajiS, text="Future with Shima", style="Custom.TCheckbutton", variable=mSShima)
     sShima.place(x=308, y=152)
 
-    sMaids = tk.Checkbutton(tabMajiS, text="Future with the Maids", font=("Tahoma", 13), variable=mSMaids)
+    sMaids = ttk.Checkbutton(tabMajiS, text="Future with the Maids", style="Custom.TCheckbutton", variable=mSMaids)
     sMaids.place(x=308, y=178)
 
-    sKazamaFam = tk.Checkbutton(tabMajiS, text="Future with the Kazama Family", font=("Tahoma", 13), variable=mSKazamaFam)
+    sKazamaFam = ttk.Checkbutton(tabMajiS, text="Future with the Kazama Family", style="Custom.TCheckbutton", variable=mSKazamaFam)
     sKazamaFam.place(x=503, y=74)
 
-    sTatsuko = tk.Checkbutton(tabMajiS, text="Tatsuko", font=("Tahoma", 13), variable=mSTatsuko)
+    sTatsuko = ttk.Checkbutton(tabMajiS, text="Tatsuko", style="Custom.TCheckbutton", variable=mSTatsuko)
     sTatsuko.place(x=308, y=74)
 
-    sYumiko = tk.Checkbutton(tabMajiS, text="Yumiko", font=("Tahoma", 13), variable=mSYumiko)
+    sYumiko = ttk.Checkbutton(tabMajiS, text="Yumiko", style="Custom.TCheckbutton", variable=mSYumiko)
     sYumiko.place(x=308, y=100)
 
-    sDevotedCrabs = tk.Checkbutton(tabMajiS, text="Future Devoted to Hermit Crabs", font=("Tahoma", 13), variable=mSDevotedCrabs)
+    sDevotedCrabs = ttk.Checkbutton(tabMajiS, text="Future Devoted to Hermit Crabs", style="Custom.TCheckbutton", variable=mSDevotedCrabs)
     sDevotedCrabs.place(x=503, y=100)
 
-    sMiyakoAF1 = tk.Checkbutton(tabMajiS, text="Another Future with Miyako 1", font=("Tahoma", 13), variable=mSMiyakoAF1)
+    sMiyakoAF1 = ttk.Checkbutton(tabMajiS, text="Another Future with Miyako 1", style="Custom.TCheckbutton", variable=mSMiyakoAF1)
     sMiyakoAF1.place(x=503, y=126)
 
-    sMiyakoAF2 = tk.Checkbutton(tabMajiS, text="Another Future with Miyako 2", font=("Tahoma", 13), variable=mSMiyakoAF2)
+    sMiyakoAF2 = ttk.Checkbutton(tabMajiS, text="Another Future with Miyako 2", style="Custom.TCheckbutton", variable=mSMiyakoAF2)
     sMiyakoAF2.place(x=503, y=152)
 
-    sMiyakoAF3 = tk.Checkbutton(tabMajiS, text="Another Future with Miyako 3", font=("Tahoma", 13), variable=mSMiyakoAF3)
+    sMiyakoAF3 = ttk.Checkbutton(tabMajiS, text="Another Future with Miyako 3", style="Custom.TCheckbutton", variable=mSMiyakoAF3)
     sMiyakoAF3.place(x=503, y=178)
 
-    sChousokabe = tk.Checkbutton(tabMajiS, text="Future with Chousokabe", font=("Tahoma", 13), variable=mSChousokabe)
+    sChousokabe = ttk.Checkbutton(tabMajiS, text="Future with Chousokabe", style="Custom.TCheckbutton", variable=mSChousokabe)
     sChousokabe.place(x=405, y=204)
 
-    sKokoro = tk.Checkbutton(tabMajiS, text="Kokoro", font=("Tahoma", 13), variable=mSKokoro)
+    sKokoro = ttk.Checkbutton(tabMajiS, text="Kokoro", style="Custom.TCheckbutton", variable=mSKokoro)
     sKokoro.place(x=308, y=126)
 
-    sNoRelationship = tk.Checkbutton(tabMajiS, text="Future without a Relationship", font=("Tahoma", 13), variable=mSNoRelationship)
+    sNoRelationship = ttk.Checkbutton(tabMajiS, text="Future without a Relationship", style="Custom.TCheckbutton", variable=mSNoRelationship)
     sNoRelationship.place(x=503, y=48)
 
-    sKosugi = tk.Checkbutton(tabMajiS, text="Kosugi", font=("Tahoma", 13), variable=mSKosugi)
+    sKosugi = ttk.Checkbutton(tabMajiS, text="Kosugi", style="Custom.TCheckbutton", variable=mSKosugi)
     sKosugi.place(x=10, y=299)
 
-    sKosugiCont = tk.Checkbutton(tabMajiS, text="Future with Kosugi Continued", font=("Tahoma", 13), variable=mSKosugiCont)
+    sKosugiCont = ttk.Checkbutton(tabMajiS, text="Future with Kosugi Continued", style="Custom.TCheckbutton", variable=mSKosugiCont)
     sKosugiCont.place(x=10, y=325)
 
-    sChildhood = tk.Checkbutton(tabMajiS, text="Childhood", font=("Tahoma", 13), variable=mSChildhood)
+    sChildhood = ttk.Checkbutton(tabMajiS, text="Childhood", style="Custom.TCheckbutton", variable=mSChildhood)
     sChildhood.place(x=10, y=351)
 
-    sKoyuki = tk.Checkbutton(tabMajiS, text="Koyuki", font=("Tahoma", 13), variable=mSKoyuki)
+    sKoyuki = ttk.Checkbutton(tabMajiS, text="Koyuki", style="Custom.TCheckbutton", variable=mSKoyuki)
     sKoyuki.place(x=10, y=377)
 
-    sKoyukiF = tk.Checkbutton(tabMajiS, text="Future with Koyuki", font=("Tahoma", 13), variable=mSKoyukiF)
+    sKoyukiF = ttk.Checkbutton(tabMajiS, text="Future with Koyuki", style="Custom.TCheckbutton", variable=mSKoyukiF)
     sKoyukiF.place(x=10, y=403)
 
-    sTakae = tk.Checkbutton(tabMajiS, text="Future Where You're An Acquaintance of Takae", font=("Tahoma", 13), variable=mSTakae)
+    sTakae = ttk.Checkbutton(tabMajiS, text="Future Where You're An Acquaintance of Takae", style="Custom.TCheckbutton", variable=mSTakae)
     sTakae.place(x=10, y=429)
 
-    sMonshiroAfter = tk.Checkbutton(tabMajiS, text="Monshiro After", font=("Tahoma", 13), variable=mSMonshiroAfter)
+    sMonshiroAfter = ttk.Checkbutton(tabMajiS, text="Monshiro After", style="Custom.TCheckbutton", variable=mSMonshiroAfter)
     sMonshiroAfter.place(x=385, y=301)
 
-    sKazukoAfter = tk.Checkbutton(tabMajiS, text="Kazuko S After", font=("Tahoma", 13), variable=mSKazukoS)
+    sKazukoAfter = ttk.Checkbutton(tabMajiS, text="Kazuko S After", style="Custom.TCheckbutton", variable=mSKazukoS)
     sKazukoAfter.place(x=385, y=327)
 
-    sMomoyoAfter = tk.Checkbutton(tabMajiS, text="Momoyo S After", font=("Tahoma", 13), variable=mSMomoyoS)
+    sMomoyoAfter = ttk.Checkbutton(tabMajiS, text="Momoyo S After", style="Custom.TCheckbutton", variable=mSMomoyoS)
     sMomoyoAfter.place(x=385, y=353)
 
-    sMiyakoAfter = tk.Checkbutton(tabMajiS, text="Miyako S After", font=("Tahoma", 13), variable=mSMiyakoS)
+    sMiyakoAfter = ttk.Checkbutton(tabMajiS, text="Miyako S After", style="Custom.TCheckbutton", variable=mSMiyakoS)
     sMiyakoAfter.place(x=385, y=379)
 
-    sYukieAfter = tk.Checkbutton(tabMajiS, text="Yukie S After", font=("Tahoma", 13), variable=mSYukieS)
+    sYukieAfter = ttk.Checkbutton(tabMajiS, text="Yukie S After", style="Custom.TCheckbutton", variable=mSYukieS)
     sYukieAfter.place(x=385, y=405)
 
-    sChrisAfter = tk.Checkbutton(tabMajiS, text="Chris After + S After", font=("Tahoma", 13), variable=mSChrisS)
+    sChrisAfter = ttk.Checkbutton(tabMajiS, text="Chris After + S After", style="Custom.TCheckbutton", variable=mSChrisS)
     sChrisAfter.place(x=533, y=299)
 
-    sTsubameAF1 = tk.Checkbutton(tabMajiS, text="Future with Tsubame 1 After", font=("Tahoma", 13), variable=mSTsubameAF1)
+    sTsubameAF1 = ttk.Checkbutton(tabMajiS, text="Future with Tsubame 1 After", style="Custom.TCheckbutton", variable=mSTsubameAF1)
     sTsubameAF1.place(x=533, y=351)
 
-    sTsubameAF2 = tk.Checkbutton(tabMajiS, text="Future with Tsubame 2 After", font=("Tahoma", 13), variable=mSTsubameAF2)
+    sTsubameAF2 = ttk.Checkbutton(tabMajiS, text="Future with Tsubame 2 After", style="Custom.TCheckbutton", variable=mSTsubameAF2)
     sTsubameAF2.place(x=533, y=377)
 
-    sHermitCrabsS = tk.Checkbutton(tabMajiS, text="Future with Hermit Crabs S After", font=("Tahoma", 13), variable=mSHermitCrabsS)
+    sHermitCrabsS = ttk.Checkbutton(tabMajiS, text="Future with Hermit Crabs S After", style="Custom.TCheckbutton", variable=mSHermitCrabsS)
     sHermitCrabsS.place(x=533, y=403)
 
-    sAgaveAfter = tk.Checkbutton(tabMajiS, text="Agave After", font=("Tahoma", 13), variable=mSAgaveAfter)
+    sAgaveAfter = ttk.Checkbutton(tabMajiS, text="Agave After", style="Custom.TCheckbutton", variable=mSAgaveAfter)
     sAgaveAfter.place(x=533, y=325)
 
     # Majikoi A-1
@@ -550,13 +554,13 @@ def init():
     labelSayaka.place(x=270, y=10)
 
     # Checkbuttons
-    mA1Benki = tk.Checkbutton(tabA1, text="Completed", font=("Tahoma", 11), variable=mA1BenkiVal)
+    mA1Benki = ttk.Checkbutton(tabA1, text="Completed", style="Custom.TCheckbutton", variable=mA1BenkiVal)
     mA1Benki.place(x=8, y=34)
 
-    mA1Azumi = tk.Checkbutton(tabA1, text="Completed", font=("Tahoma", 11), variable=mA1AzumiVal)
+    mA1Azumi = ttk.Checkbutton(tabA1, text="Completed", style="Custom.TCheckbutton", variable=mA1AzumiVal)
     mA1Azumi.place(x=147, y=34)
  
-    mA1Sayaka = tk.Checkbutton(tabA1, text="Completed", font=("Tahoma", 11), variable=mA1SayakaVal)
+    mA1Sayaka = ttk.Checkbutton(tabA1, text="Completed", style="Custom.TCheckbutton", variable=mA1SayakaVal)
     mA1Sayaka.place(x=269, y=34)
 
     # Majikoi A-2
@@ -576,13 +580,13 @@ def init():
     labelSeiso.place(x=270, y=10)
 
     # Checkbuttons
-    mA2Monshiro = tk.Checkbutton(tabA2, text="Completed", font=("Tahoma", 11), variable=mA2MonshiroVal)
+    mA2Monshiro = ttk.Checkbutton(tabA2, text="Completed", style="Custom.TCheckbutton", variable=mA2MonshiroVal)
     mA2Monshiro.place(x=8, y=34)
 
-    mA2Aiess = tk.Checkbutton(tabA2, text="Completed", font=("Tahoma", 11), variable=mA2AiessVal)
+    mA2Aiess = ttk.Checkbutton(tabA2, text="Completed", style="Custom.TCheckbutton", variable=mA2AiessVal)
     mA2Aiess.place(x=147, y=34)
 
-    mA2Seiso = tk.Checkbutton(tabA2, text="Completed", font=("Tahoma", 11), variable=mA2SeisoVal)
+    mA2Seiso = ttk.Checkbutton(tabA2, text="Completed", style="Custom.TCheckbutton", variable=mA2SeisoVal)
     mA2Seiso.place(x=269, y=34)
 
     # Majikoi A-3
@@ -602,13 +606,13 @@ def init():
     labelTsubame.place(x=270, y=10)
 
     # Checkbuttons
-    mA3Lee = tk.Checkbutton(tabA3, text="Completed", font=("Tahoma", 11), variable=mA3LeeVal)
+    mA3Lee = ttk.Checkbutton(tabA3, text="Completed", style="Custom.TCheckbutton", variable=mA3LeeVal)
     mA3Lee.place(x=8, y=34)
     
-    mA3Stacy = tk.Checkbutton(tabA3, text="Completed", font=("Tahoma", 11), variable=mA3StacyVal)
+    mA3Stacy = ttk.Checkbutton(tabA3, text="Completed", style="Custom.TCheckbutton", variable=mA3StacyVal)
     mA3Stacy.place(x=147, y=34)
 
-    mA3Tsubame = tk.Checkbutton(tabA3, text="Completed", font=("Tahoma", 11), variable=mA3TsubameVal)
+    mA3Tsubame = ttk.Checkbutton(tabA3, text="Completed", style="Custom.TCheckbutton", variable=mA3TsubameVal)
     mA3Tsubame.place(x=269, y=34)
 
     # Majikoi A-4
@@ -624,10 +628,10 @@ def init():
     labelHomura.place(x=147, y=10)
 
     # Checkbuttons
-    mA4Lin = tk.Checkbutton(tabA4, text="Completed", font=("Tahoma", 11), variable=mA4LinVal)
+    mA4Lin = ttk.Checkbutton(tabA4, text="Completed", style="Custom.TCheckbutton", variable=mA4LinVal)
     mA4Lin.place(x=8, y=34)
 
-    mA4Homura = tk.Checkbutton(tabA4, text="Complete", font=("Tahoma", 11), variable=mA4HomuraVal)
+    mA4Homura = ttk.Checkbutton(tabA4, text="Complete", style="Custom.TCheckbutton", variable=mA4HomuraVal)
     mA4Homura.place(x=147, y=34)
 
     # Majikoi A-5
@@ -647,13 +651,13 @@ def init():
     labelMargit.place(x=270, y=10)
 
     # Checkbuttons
-    mA5Yoshitsune = tk.Checkbutton(tabA5, text="Completed", font=("Tahoma", 11), variable=mA5YoshitsuneVal)
+    mA5Yoshitsune = ttk.Checkbutton(tabA5, text="Completed", style="Custom.TCheckbutton", variable=mA5YoshitsuneVal)
     mA5Yoshitsune.place(x=8, y=34)
 
-    mA5Takae = tk.Checkbutton(tabA5, text="Completed", font=("Tahoma", 11), variable=mA5TakaeVal)
+    mA5Takae = ttk.Checkbutton(tabA5, text="Completed", style="Custom.TCheckbutton", variable=mA5TakaeVal)
     mA5Takae.place(x=147, y=34)
 
-    mA5Margit = tk.Checkbutton(tabA5, text="Completed", font=("Tahoma", 11), variable=mA5MargitVal)
+    mA5Margit = ttk.Checkbutton(tabA5, text="Completed", style="Custom.TCheckbutton", variable=mA5MargitVal)
     mA5Margit.place(x=269, y=34)
     
     # About
@@ -677,7 +681,7 @@ def init():
     labelAboutInfo.place(x=24, y=269)
 
     # Buttons
-    buttonDeleteFiles = tk.Button(tabAbout, text="Delete Files", font=("Tahoma", 30), width=34, height=2, command=deleteFiles)
+    buttonDeleteFiles = ttk.Button(tabAbout, text="Delete Files", style="Custom.TButton", width=34, command=deleteFiles)
     buttonDeleteFiles.place(x=22, y=392)
 
     # Persistence
