@@ -55,7 +55,8 @@ def generateString(length, amount, type, location):
         19: [numbers, symbolsBase],
         20: [symbolsModifiers, symbolsBase],
         21: symbolsModifiers,
-        22: symbolsBase
+        22: symbolsBase,
+        23: [numbers, symbolsBase, symbolsModifiers, lettersUppercase, lettersLowercase]
 
     }
 
@@ -119,7 +120,7 @@ def init():
 
     # Dropdowns
     global opt;
-    opt = ["All", "Letters", "Letters & Numbers", "Letters & Symbols", "Letters & Modifier Symbols", "Letters & Base Symbols", "Uppercase Letters", "Uppercase Letters & Numbers", "Uppercase Letters & Symbols", "Uppercase Letters & Modifier Symbols", "Uppercase Letters & Base Symbols", "Lowercase Letters", "Lowercase Letters & Numbers", "Lowercase Letters & Symbols", "Lowercase Letters & Modifier Symbols", "Lowercase Letters & Base Symbols", "Numbers", "Numbers & Symbols", "Numbers & Modifier Symbols", "Numbers & Base Symbols", "Symbols", "Modifier Symbols", "Base Symbols"]
+    opt = ["All", "Letters", "Letters & Numbers", "Letters & Symbols", "Letters & Modifier Symbols", "Letters & Base Symbols", "Uppercase Letters", "Uppercase Letters & Numbers", "Uppercase Letters & Symbols", "Uppercase Letters & Modifier Symbols", "Uppercase Letters & Base Symbols", "Lowercase Letters", "Lowercase Letters & Numbers", "Lowercase Letters & Symbols", "Lowercase Letters & Modifier Symbols", "Lowercase Letters & Base Symbols", "Numbers", "Numbers & Symbols", "Numbers & Modifier Symbols", "Numbers & Base Symbols", "Symbols", "Modifier Symbols", "Base Symbols", "All"]
     ddOpt = tk.StringVar(root)
     ddOpt.set(opt[0])
     ddStrType = ttk.OptionMenu(root, ddOpt, *opt)
