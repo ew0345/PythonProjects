@@ -1,6 +1,7 @@
 import tkinter as tk
 import os
 import subprocess
+import string
 from random import choice as rc
 from tkinter import filedialog
 from tkinter import ttk
@@ -25,11 +26,11 @@ def generateString(length, amount, type, location):
     type = typeDict[type]
 
     # List of Characters to be selected from when generating a string
-    numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    numbers = string.digits
     symbolsBase = ["`", "-", "=", "[", "]", "\\", ";", "\'", ",", ".", "/"]
     symbolsModifiers = ["~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "{", "}", "|", ":", "\"", "<", ">", "?"]
-    lettersUppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    lettersLowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    lettersUppercase = string.ascii_uppercase
+    lettersLowercase = string.ascii_lowercase
     
     # Combinations to be selected from by 'type' variables when generating and saving strings
     typeOpts = {
