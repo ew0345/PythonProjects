@@ -47,16 +47,16 @@ def init():
     labelMadeBy.place(x=150, y=89)
 
     # Buttons
-    buttonSCC = ttk.Button(root, text="Sheer Cold Calculator", width=18, command=lambda: open(0))
+    buttonSCC = ttk.Button(root, text="Sheer Cold Calculator", width=20, command=lambda: open(0))
     buttonSCC.place(x=1, y=30)
 
-    buttonArch = ttk.Button(root, text="Arch Tome Calculator", width=18, command=lambda: open(1))
+    buttonArch = ttk.Button(root, text="Arch Tome Calculator", width=20, command=lambda: open(1))
     buttonArch.place(x=1, y=60)
 
-    buttonMaji = ttk.Button(root, text="Majikoi Route Tracker", width=18, command=lambda: open(2))
+    buttonMaji = ttk.Button(root, text="Majikoi Route Tracker", width=20, command=lambda: open(2))
     buttonMaji.place(x=1, y=90)
 
-    buttonStrGen = ttk.Button(root, text="Generate Strings", width=18, command=lambda: open(3))
+    buttonStrGen = ttk.Button(root, text="Generate Strings", width=20, command=lambda: open(3))
     buttonStrGen.place(x=1, y=120)
 
     root.mainloop()

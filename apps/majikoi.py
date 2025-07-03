@@ -18,14 +18,23 @@ def deleteFiles():
         if os.path.isfile(i):
             os.remove(i)
 
+    clearStates()
+
     deleted = True
+
+def clearStates():
+    # Majikoi game variables
+    checkboxes = [mMomoyo, mChris, mMiyako, mYukie, mKazuko, mKojima, mChika, mMoro, mCapt, mGakuto, mHermitCrabs, mNoRelationship, mMayo, mTutorialRoom, mAgave, mMomoyoAfter, mMiyakoAfter, mYukieAfter, mKazukoAfter, mSCommon, mSMonshiro, mSMonshiroCont, mSMargit, mSMargitCont, mSTsubame, mSTsubameCont, mSTsubameF1, mSTsubameF2, mSIyo, mSShima, mSMaids, mSKazamaFam, mSTatsuko, mSYumiko, mSDevotedCrabs, mSMiyakoAF1, mSMiyakoAF2, mSMiyakoAF3, mSChousokabe, mSKokoro, mSNoRelationship, mSKosugi, mSKosugiCont, mSChildhood, mSKoyuki, mSKoyukiF, mSTakae, mSMonshiroAfter, mSKazukoS, mSMomoyoS, mSMiyakoS, mSYukieS, mSChrisS, mSTsubameAF1, mSTsubameAF2, mSHermitCrabsS, mSAgaveAfter, mA1BenkiVal, mA1AzumiVal, mA1SayakaVal, mA2MonshiroVal, mA2AiessVal, mA2SeisoVal, mA3LeeVal, mA3StacyVal, mA3TsubameVal, mA4LinVal, mA4HomuraVal, mA5YoshitsuneVal, mA5TakaeVal, mA5MargitVal]
+
+    for i, var in enumerate(checkboxes):
+        var.set(0)
 
 def writeStates(ret):
     if deleted == True:
         root.quit()
     else:
         # Majikoi
-        mVars = [mMomoyo, mChris, mMiyako, mYukie, mKazuko, mKojima, mChika, mMoro, mCapt, mHermitCrabs, mNoRelationship, mMayo, mTutorialRoom, mAgave, mMomoyoAfter, mMiyakoAfter, mYukieAfter, mKazukoAfter]
+        mVars = [mMomoyo, mChris, mMiyako, mYukie, mKazuko, mKojima, mChika, mMoro, mCapt, mGakuto, mHermitCrabs, mNoRelationship, mMayo, mTutorialRoom, mAgave, mMomoyoAfter, mMiyakoAfter, mYukieAfter, mKazukoAfter]
 
         for i, var in enumerate(mVars):
             m1States[i] = 0 if var.get() == 0 else 1
@@ -129,7 +138,7 @@ def readStates():
         with open(m1State, "r") as f:
             m1States = [line.strip() for line in f.readlines()]
 
-    mVars = [mMomoyo, mChris, mMiyako, mYukie, mKazuko, mKojima, mChika, mMoro, mCapt, mHermitCrabs, mNoRelationship, mMayo, mTutorialRoom, mAgave, mMomoyoAfter, mMiyakoAfter, mYukieAfter, mKazukoAfter]
+    mVars = [mMomoyo, mChris, mMiyako, mYukie, mKazuko, mKojima, mChika, mMoro, mCapt, mGakuto, mHermitCrabs, mNoRelationship, mMayo, mTutorialRoom, mAgave, mMomoyoAfter, mMiyakoAfter, mYukieAfter, mKazukoAfter]
 
     for i, var in enumerate(mVars):
         var.set(0 if int(m1States[i]) == 0 else 1)
@@ -371,7 +380,7 @@ def init():
     KazukoAfter = ttk.Checkbutton(tabMaji, text="Kazuko After", style="Custom.TCheckbutton", variable=mKazukoAfter)
     KazukoAfter.place(x=491, y=127)
 
-    # Majikoi S TODO
+    # Majikoi S
     # Variables
     global mSCommon; mSCommon = tk.IntVar()
     global mSMonshiro; mSMonshiro = tk.IntVar()
@@ -681,8 +690,11 @@ def init():
     labelAboutInfo.place(x=24, y=269)
 
     # Buttons
-    buttonDeleteFiles = ttk.Button(tabAbout, text="Delete Files", style="Custom.TButton", width=34, command=deleteFiles)
+    buttonDeleteFiles = ttk.Button(tabAbout, text="Delete Files", style="Custom.TButton", width=17, command=deleteFiles)
     buttonDeleteFiles.place(x=22, y=392)
+
+    buttonClearStates = ttk.Button(tabAbout, text="Clear States", style="Custom.TButton", width=17, command=clearStates)
+    buttonClearStates.place(x=403, y=392)
 
     # Persistence
     readStates()
