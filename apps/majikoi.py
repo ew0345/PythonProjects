@@ -2,6 +2,7 @@ import os
 import tkinter as tk
 import subprocess
 from tkinter import ttk
+from tkinter import messagebox
 
 def returnToLauncher():
     try:
@@ -11,16 +12,19 @@ def returnToLauncher():
         print(f"Failed to launch launcher.py: {e}")
 
 def deleteFiles():
-    global deleted
-    files = [m1State, mSState, mA1State, mA2State, mA3State, mA4State, mA5State]
+    mbDeleteFile = messagebox.askyesno("Delete Files", "Do you want to delete the files? Program will exit after deleting files.")
+    
+    if mbDeleteFile == True:
+        # Delete files
+        files = [m1State, mSState, mA1State, mA2State, mA3State, mA4State, mA5State]
 
-    for i in files:
-        if os.path.isfile(i):
-            os.remove(i)
+        for i in files:
+            if os.path.isfile(i):
+                os.remove(i)
 
-    clearStates()
+        clearStates()
+        root.quit()
 
-    deleted = True
 
 def clearStates():
     # Majikoi game variables
@@ -30,83 +34,80 @@ def clearStates():
         var.set(0)
 
 def writeStates(ret):
-    if deleted == True:
+    # Majikoi
+    mVars = [mMomoyo, mChris, mMiyako, mYukie, mKazuko, mKojima, mChika, mMoro, mCapt, mGakuto, mHermitCrabs, mNoRelationship, mMayo, mTutorialRoom, mAgave, mMomoyoAfter, mMiyakoAfter, mYukieAfter, mKazukoAfter]
+
+    for i, var in enumerate(mVars):
+        m1States[i] = 0 if var.get() == 0 else 1
+
+    with open(m1State, "w") as f:
+        for item in m1States:
+            f.write("%s\n" % item)
+
+    # Majikoi S
+    mSVars = [mSCommon, mSMonshiro, mSMonshiroCont, mSMargit, mSMargitCont, mSTsubame, mSTsubameCont, mSTsubameF1, mSTsubameF2, mSIyo, mSShima, mSMaids, mSKazamaFam, mSTatsuko, mSYumiko, mSDevotedCrabs, mSMiyakoAF1, mSMiyakoAF2, mSMiyakoAF3, mSChousokabe, mSKokoro, mSNoRelationship, mSKosugi, mSKosugiCont, mSChildhood, mSKoyuki, mSKoyukiF, mSTakae, mSMonshiroAfter, mSKazukoS, mSMomoyoS, mSMiyakoS, mSYukieS, mSChrisS, mSTsubameAF1, mSTsubameAF2, mSHermitCrabsS, mSAgaveAfter]
+
+    for i, var in enumerate(mSVars):
+        mSStates[i] = 0 if var.get() == 0 else 1
+    
+    with open(mSState, "w") as f:
+        for item in mSStates:
+            f.write("%s\n" % item)
+    
+    # Majikoi A-1
+    mA1Vars = [mA1BenkiVal, mA1AzumiVal, mA1SayakaVal]
+    
+    for i, var in enumerate(mA1Vars):
+        mA1States[i] = 0 if var.get() == 0 else 1
+
+    with open(mA1State, "w") as f:
+        for item in mA1States:
+            f.write("%s\n" % item)
+
+    # Majikoi A-2
+    mA2Vars = [mA2MonshiroVal, mA2AiessVal, mA2SeisoVal]
+
+    for i, var in enumerate(mA2Vars):
+        mA2States[i] = 0 if var.get() == 0 else 1
+    
+    with open(mA2State, "w") as f:
+        for item in mA2States:
+            f.write("%s\n" % item)
+
+    # Majikoi A-3
+    mA3Vars = [mA3LeeVal, mA3StacyVal, mA3TsubameVal]
+
+    for i, var in enumerate(mA3Vars):
+        mA3States[i] = 0 if var.get() == 0 else 1
+
+    with open(mA3State, "w") as f:
+        for item in mA3States:
+            f.write("%s\n" % item)
+    
+    # Majikoi A-4 
+    mA4Vars = [mA4LinVal, mA4HomuraVal]
+
+    for i, var in enumerate(mA4Vars):
+        mA4States[i] = 0 if var.get() == 0 else 1
+
+    with open(mA4State, "w") as f:
+        for item in mA4States:
+            f.write("%s\n" % item)
+
+    # Majikoi A-5
+    mA5Vars = [mA5YoshitsuneVal, mA5TakaeVal, mA5MargitVal]
+
+    for i, var in enumerate(mA5Vars):
+        mA5States[i] = 0 if var.get() == 0 else 1
+
+    with open(mA5State, "w") as f:
+        for item in mA5States:
+            f.write("%s\n" % item)
+
+    if ret == False:
         root.quit()
     else:
-        # Majikoi
-        mVars = [mMomoyo, mChris, mMiyako, mYukie, mKazuko, mKojima, mChika, mMoro, mCapt, mGakuto, mHermitCrabs, mNoRelationship, mMayo, mTutorialRoom, mAgave, mMomoyoAfter, mMiyakoAfter, mYukieAfter, mKazukoAfter]
-
-        for i, var in enumerate(mVars):
-            m1States[i] = 0 if var.get() == 0 else 1
-
-        with open(m1State, "w") as f:
-            for item in m1States:
-                f.write("%s\n" % item)
-
-        # Majikoi S
-        mSVars = [mSCommon, mSMonshiro, mSMonshiroCont, mSMargit, mSMargitCont, mSTsubame, mSTsubameCont, mSTsubameF1, mSTsubameF2, mSIyo, mSShima, mSMaids, mSKazamaFam, mSTatsuko, mSYumiko, mSDevotedCrabs, mSMiyakoAF1, mSMiyakoAF2, mSMiyakoAF3, mSChousokabe, mSKokoro, mSNoRelationship, mSKosugi, mSKosugiCont, mSChildhood, mSKoyuki, mSKoyukiF, mSTakae, mSMonshiroAfter, mSKazukoS, mSMomoyoS, mSMiyakoS, mSYukieS, mSChrisS, mSTsubameAF1, mSTsubameAF2, mSHermitCrabsS, mSAgaveAfter]
-
-        for i, var in enumerate(mSVars):
-            mSStates[i] = 0 if var.get() == 0 else 1
-        
-        with open(mSState, "w") as f:
-            for item in mSStates:
-                f.write("%s\n" % item)
-        
-        # Majikoi A-1
-        mA1Vars = [mA1BenkiVal, mA1AzumiVal, mA1SayakaVal]
-        
-        for i, var in enumerate(mA1Vars):
-            mA1States[i] = 0 if var.get() == 0 else 1
-
-        with open(mA1State, "w") as f:
-            for item in mA1States:
-                f.write("%s\n" % item)
-
-        # Majikoi A-2
-        mA2Vars = [mA2MonshiroVal, mA2AiessVal, mA2SeisoVal]
-
-        for i, var in enumerate(mA2Vars):
-            mA2States[i] = 0 if var.get() == 0 else 1
-        
-        with open(mA2State, "w") as f:
-            for item in mA2States:
-                f.write("%s\n" % item)
-
-        # Majikoi A-3
-        mA3Vars = [mA3LeeVal, mA3StacyVal, mA3TsubameVal]
-
-        for i, var in enumerate(mA3Vars):
-            mA3States[i] = 0 if var.get() == 0 else 1
-
-        with open(mA3State, "w") as f:
-            for item in mA3States:
-                f.write("%s\n" % item)
-        
-        # Majikoi A-4 
-        mA4Vars = [mA4LinVal, mA4HomuraVal]
-
-        for i, var in enumerate(mA4Vars):
-            mA4States[i] = 0 if var.get() == 0 else 1
-
-        with open(mA4State, "w") as f:
-            for item in mA4States:
-                f.write("%s\n" % item)
-
-        # Majikoi A-5
-        mA5Vars = [mA5YoshitsuneVal, mA5TakaeVal, mA5MargitVal]
-
-        for i, var in enumerate(mA5Vars):
-            mA5States[i] = 0 if var.get() == 0 else 1
-
-        with open(mA5State, "w") as f:
-            for item in mA5States:
-                f.write("%s\n" % item)
-
-        if ret == False:
-            root.quit()
-        else:
-            returnToLauncher()
+        returnToLauncher()
 
 def readStates():
     # Majikoi Routes Directory
@@ -240,7 +241,6 @@ def readStates():
         var.set(0 if int(mA5States[i]) == 0 else 1)
 
 def init():
-    global deleted; deleted = False
     global root
     root = tk.Tk()
     # Set Window Size
